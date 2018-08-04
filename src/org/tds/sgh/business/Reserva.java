@@ -2,7 +2,7 @@ package org.tds.sgh.business;
 
 import java.util.Map;
 
-public class Reservas {
+public class Reserva {
 	
 	private String codigo ;
 	private String fechaFin;
