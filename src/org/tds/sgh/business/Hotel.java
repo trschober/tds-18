@@ -83,7 +83,7 @@ public class Hotel
 		return new HashSet<Reserva>(this.reservas.values());
 	}
 	
-	public boolean confirmarDisponibilidad( String nth, GregorianCalendar fi, GregorianCalendar ff  ) {
+	public boolean confirmarDisponibilidad( String nth, GregorianCalendar fi, GregorianCalendar ff  ) throws Exception {
 		
 		TipoHabitacion th = null;
 		
@@ -103,13 +103,13 @@ public class Hotel
 	}	
 	
 	//TODO Mejorar algoritmo para calcular conflictos de fechas
-	private int calcularMaxReservasConConflictos(TipoHabitacion th, GregorianCalendar fi, GregorianCalendar ff) {
+	private int calcularMaxReservasConConflictos(TipoHabitacion th, GregorianCalendar fi, GregorianCalendar ff) throws Exception {
 		
 		int conflicto = 0;
 		
 		for(Reserva r : this.reservas.values()) {
 			
-			 if ( r.toparFecha(fi, ff) && r.getHabitacion().getTipoHabitacion() == th ) {
+			 if ( r.ToparFecha(fi, ff) && r.getHabitacion().getTipoHabitacion() == th ) {
 				 conflicto++;
 			 }
 		}
