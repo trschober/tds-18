@@ -170,7 +170,7 @@ public class CadenaHotelera
 	}
 
 	public Set<HotelDTO> sugerirAlternativas(String pais, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
-			GregorianCalendar fechaFin) {
+			GregorianCalendar fechaFin) throws Exception {
 		
 		
 		Set<HotelDTO> hotelesDTO = new HashSet<HotelDTO>();
