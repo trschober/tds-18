@@ -1,6 +1,5 @@
 package org.tds.sgh.system;
 
-<<<<<<< HEAD
 import java.util.GregorianCalendar;
 import java.util.Set;
 
@@ -86,19 +85,5 @@ public class TomarReservaController implements ITomarReservaController {
 		// TODO Auto-generated method stub
 		return null;
 	}
-=======
-import org.tds.sgh.business.CadenaHotelera;
 
-public class TomarReservaController {
->>>>>>> cd963b412c20d3cbc4b5343cbb361e3bf5247bc5
-
-	
-	private CadenaHotelera cadenaHotelera;
-	
-	// --------------------------------------------------------------------------------------------
-	
-	public TomarReservaController(CadenaHotelera cadenaHotelera)
-	{
-		this.cadenaHotelera = cadenaHotelera;
-	}
 }
