@@ -28,8 +28,9 @@ public class Habitacion
 	{
 		return this.tipoHabitacion;
 	}
-	public Habitacion getHabitacion()
-	{
-		return this.tipoHabitacion;
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
+	
 }
