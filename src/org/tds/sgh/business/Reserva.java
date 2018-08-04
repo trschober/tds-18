@@ -33,7 +33,7 @@ public class Reserva {
 	}	
 	public Habitacion getHabitacion(Integer CodigoHabitacion) throws Exception
 	{
-		Habitacion habitacion = this.habitacion.getHabitacion(CodigoHabitacion);
+		Habitacion habitacion = null; //this.habitacion.getHabitacion(CodigoHabitacion);
 		
 		if (habitacion == null)
 		{
@@ -117,8 +117,9 @@ public class Reserva {
 	public boolean ToparFecha (GregorianCalendar Fecha)
 	{
 		boolean FechaOk =this.fechaInicio.compareTo(Fecha)<=0 && this.fechaFin.compareTo(Fecha)>=0 ;
-		return FechaOk && EstaTomada();	
+		return FechaOk && getEstado() == EstadoReserva.TOMADA;	
 	}
+
 	public boolean EstaPendiente() {
 		return estado.compareTo(EstadoReserva.PENDIENTE) == 0;
 	}
@@ -130,5 +131,23 @@ public class Reserva {
 	}
 	public boolean EstaTomada() {
 		return estado.compareTo(EstadoReserva.TOMADA) == 0;
+
+	
+	public void setCancelada(boolean cancelada){
+		if(cancelada){
+			this.estado = EstadoReserva.CANCELADA;
+		}	
+	}
+	
+	public void setPendiente(boolean pendiente){
+		if(pendiente){
+			this.estado = EstadoReserva.PENDIENTE;
+		}	
+	}
+	
+	public void setTomada(boolean tomada){
+		if(tomada){
+			this.estado = EstadoReserva.TOMADA;
+		}	
 	}
 }
