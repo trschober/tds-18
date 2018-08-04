@@ -153,7 +153,8 @@ public class Hotel
 
 	public ReservaDTO registrarReserva(String nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin) {
-		// TODO Auto-generated method stub
+		Reserva r = new Reserva(nombreTipoHabitacion, fechaFin, fechaFin);
+		reservas.put(r.getCodigo(),r);
 		return null;
 	}
 }
