@@ -44,8 +44,8 @@ public class HacerReservaController implements IHacerReservaController {
 	@Override
 	public ClienteDTO registrarCliente(String rut, String nombre, String direccion, String telefono, String mail)
 			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return DTO.map(cadenaHotelera.agregarCliente(rut, nombre, direccion, telefono, mail));
 	}
 
 	@Override
