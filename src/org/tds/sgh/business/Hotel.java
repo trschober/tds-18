@@ -93,6 +93,7 @@ public class Hotel
 			}
 		}
 		
+		
 		//boolean Reserva = true;
 		int capacidadPorTipHabitacion = this.calcularCapacidad(th);
 		int reservasConConflicto = this.calcularMaxReservasConConflictos(th, fi, ff);
