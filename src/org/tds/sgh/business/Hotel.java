@@ -100,7 +100,7 @@ public class Hotel
 		
 		for(Reserva r : this.reservas.values()) {
 			
-			 if ( r.ToparFecha(fi, ff) && r.getHabitacion().getTipoHabitacion().getNombre().equals(nth) ) {
+			 if ( r.ToparFecha(fi, ff) && r.getHabitacion().getTipoHabitacion().getNombre().equals(nth) && r.EstaPendiente() ) {
 				 conflicto++;
 			 }
 		}
