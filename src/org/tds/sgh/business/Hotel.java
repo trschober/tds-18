@@ -38,7 +38,7 @@ public class Hotel
 	{
 		if (this.habitaciones.containsKey(nombre))
 		{
-			throw new Exception("El hotel ya tiene una habitación con el nombre indicado.");
+			throw new Exception("El hotel ya tiene una habitaciï¿½n con el nombre indicado.");
 		}
 		
 		Habitacion habitacion = new Habitacion(tipoHabitacion, nombre);
@@ -67,7 +67,7 @@ public class Hotel
 		
 		if (!this.reservas.containsKey(codigoReserva))
 		{
-			throw new Exception("No existe el código de reserva indicado.");
+			throw new Exception("No existe el cï¿½digo de reserva indicado.");
 		}
 		
 		return this.reservas.get(codigoReserva);
@@ -78,7 +78,7 @@ public class Hotel
 		return new HashSet<Reserva>(this.reservas.values());
 	}
 	
-	public Boolean confirmarDisponibilidad( TipoHabitacion th, GregorianCalendar fi, GregorianCalendar ff  ) {
+	public boolean confirmarDisponibilidad( TipoHabitacion th, GregorianCalendar fi, GregorianCalendar ff  ) {
 		
 		int capacidadPorTipHabitacion = this.calcularCapacidad(th);
 		int reservasConConflicto = this.calcularMaxReservasConConflictos(th, fi, ff);

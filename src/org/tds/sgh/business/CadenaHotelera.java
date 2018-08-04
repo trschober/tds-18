@@ -154,7 +154,8 @@ public class CadenaHotelera
 
 	public boolean confirmarDisponibilidad(String nombreHotel, String nombreTipoHabitacion,
 			GregorianCalendar fechaInicio, GregorianCalendar fechaFin) {
-		// TODO Auto-generated method stub
-		return false;
+		Hotel h = this.buscarHotel(nombreHotel);
+		boolean a = h.confirmarDisponibilidad(nombreTipoHabitacion, fechaInicio, fechaFin)
+		return a;
 	}
 }
