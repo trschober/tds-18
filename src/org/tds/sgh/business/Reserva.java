@@ -44,7 +44,7 @@ public class Reserva {
 	}
 	
 	
-	public Habitacion getHabitacion(Integer CodigoHabitacion) throws Exception
+	public Habitacion getHabitacion() throws Exception
 	{
 
 		//Habitacion habitacion = null; //this.habitacion.getHabitacion(CodigoHabitacion);
