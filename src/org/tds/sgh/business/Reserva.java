@@ -2,7 +2,9 @@ package org.tds.sgh.business;
 
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class Reserva {
@@ -41,8 +43,10 @@ public class Reserva {
 		//this.huespedes = new ArrayList<>();
 	}
 	
-	public Habitacion getHabitacion() throws Exception
+	
+	public Habitacion getHabitacion(Integer CodigoHabitacion) throws Exception
 	{
+
 		//Habitacion habitacion = null; //this.habitacion.getHabitacion(CodigoHabitacion);
 		
 		if (habitacion == null)
@@ -52,6 +56,7 @@ public class Reserva {
 		
 		return habitacion;
 	}
+		
 	public Huesped getHuesped(Integer CodigoHuesped) throws Exception
 	{
 		Huesped huesped = this.huespedes.get(CodigoHuesped);
@@ -122,12 +127,11 @@ public class Reserva {
 		this.cliente = cliente;
 	}
 	
-	public boolean ToparFecha (GregorianCalendar Fecha)
+	public boolean ToparFecha (GregorianCalendar _fechaInico,GregorianCalendar fechaFin)
 	{
-		boolean FechaOk =this.fechaInicio.compareTo(Fecha)<=0 && this.fechaFin.compareTo(Fecha)>=0 ;
+		boolean FechaOk =this.fechaInicio.compareTo(_fechaInico)<=0 && this.fechaFin.compareTo(fechaFin)>=0 ;
 		return FechaOk && getEstado() == EstadoReserva.TOMADA;	
 	}
-
 	public boolean EstaPendiente() {
 		return estado.compareTo(EstadoReserva.PENDIENTE) == 0;
 	}
@@ -140,6 +144,34 @@ public class Reserva {
 	public boolean EstaTomada() {
 		return estado.compareTo(EstadoReserva.TOMADA) == 0;
 	}
+	
+	public int CoincideTipoHabitacion(GregorianCalendar _fechaInicio,GregorianCalendar _fechaFin )
+	{		
+		//Set<Habitacion> HabitacionEncontradas = new HashSet<Habitacion>();
+		int Coincide=0;
+		//for (Habitacion habitacion : this.Habitaciones.values())
+		//{
+			//if (habitacion.coincideElNombre(patronNombreCliente))
+			//{
+				Coincide++;
+			//}
+		//}		
+		return Coincide;
+	}
+	public int CoincideReserva(GregorianCalendar _fechaInicio,GregorianCalendar _fechaFin )
+	{		
+		//Set<Habitacion> HabitacionEncontradas = new HashSet<Habitacion>();
+		int Coincide=0;
+		//for (Habitacion habitacion : this.Habitaciones.values())
+		//{
+			//if (habitacion.coincideElNombre(patronNombreCliente))
+			//{
+				Coincide++;
+			//}
+		//}		
+		return Coincide;
+	}
+	
 
 	
 }
