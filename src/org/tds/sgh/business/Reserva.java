@@ -119,6 +119,20 @@ public class Reserva {
 		boolean FechaOk =this.fechaInicio.compareTo(Fecha)<=0 && this.fechaFin.compareTo(Fecha)>=0 ;
 		return FechaOk && getEstado() == EstadoReserva.TOMADA;	
 	}
+
+	public boolean EstaPendiente() {
+		return estado.compareTo(EstadoReserva.PENDIENTE) == 0;
+	}
+	public boolean EstaCancelada() {
+		return estado.compareTo(EstadoReserva.CANCELADA) == 0;
+	}
+	public boolean EstaNoTomada() {
+		return estado.compareTo(EstadoReserva.NO_TOMADA) == 0;
+	}
+	public boolean EstaTomada() {
+		return estado.compareTo(EstadoReserva.TOMADA) == 0;
+	}
+
 	
 	public void setCancelada(boolean cancelada){
 		if(cancelada){
