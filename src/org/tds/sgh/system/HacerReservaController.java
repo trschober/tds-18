@@ -23,6 +23,7 @@ public class HacerReservaController implements IHacerReservaController {
 	{
 		this.cadenaHotelera = cadenaHotelera;
 	}
+	
 	@Override
 	public Set<ClienteDTO> buscarCliente(String patronNombreCliente) {
 		// TODO Auto-generated method stub
