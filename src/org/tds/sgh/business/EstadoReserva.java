@@ -1,5 +1,5 @@
 package org.tds.sgh.business;
 
-public class EstadoReserva {
-
+public enum EstadoReserva {
+	PENDIENTE,TOMADA,FINALIZADA,CANCELADA,NO_TOMADA;
 }
