@@ -146,6 +146,9 @@ public class Hotel
 			GregorianCalendar fechaFin) {
 		Reserva r = new Reserva(nombreTipoHabitacion, fechaFin, fechaFin);
 		reservas.put(r.getCodigo(),r);
+		
+		
+		
 		return null;
 	}
 }
