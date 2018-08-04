@@ -40,7 +40,7 @@ public class Reserva {
 		
 		return habitacion;
 	}
-	public Habitacion getHuesped(Integer CodigoHuesped) throws Exception
+	public Huesped getHuesped(Integer CodigoHuesped) throws Exception
 	{
 		Huesped huesped = this.huespedes.get(CodigoHuesped);
 		
