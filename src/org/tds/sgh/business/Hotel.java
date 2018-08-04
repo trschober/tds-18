@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.tds.sgh.dtos.TipoHabitacionDTO;
 import org.tds.sgh.infrastructure.NotImplementedException;
 
 
@@ -78,7 +79,15 @@ public class Hotel
 		return new HashSet<Reserva>(this.reservas.values());
 	}
 	
-	public boolean confirmarDisponibilidad( TipoHabitacion th, GregorianCalendar fi, GregorianCalendar ff  ) {
+	public boolean confirmarDisponibilidad( String nth, GregorianCalendar fi, GregorianCalendar ff  ) {
+		
+		TipoHabitacion th = null;
+		
+		for(Habitacion h : habitaciones.values()) {
+			if (h.getTipoHabitacion().getNombre().equals(nth)  ) {
+				th = h.getTipoHabitacion();
+			}
+		}
 		
 		int capacidadPorTipHabitacion = this.calcularCapacidad(th);
 		int reservasConConflicto = this.calcularMaxReservasConConflictos(th, fi, ff);
@@ -124,6 +133,7 @@ public class Hotel
 		
 		for (Habitacion habitacion : this.habitaciones.values())
 		{
+			//TODO revisar si se compara nombre en lugar de código de habitación
 			if (habitacion.getTipoHabitacion().getCodigo() == th.getCodigo())
 			{
 				capacidad++;
