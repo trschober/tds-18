@@ -35,10 +35,21 @@ public class Reserva {
 		
 		if (habitacion == null)
 		{
-			throw new Exception("No existe una habitacion con el nombre indicado.");
+			throw new Exception("No existe una habitacion con el codigo indicado.");
 		}
 		
 		return habitacion;
+	}
+	public Habitacion getHuesped(Integer CodigoHuesped) throws Exception
+	{
+		Huesped huesped = this.huespedes.get(CodigoHuesped);
+		
+		if (huesped == null)
+		{
+			throw new Exception("No existe un huesped con el codigo indicado.");
+		}
+		
+		return huesped;
 	}
 	public GregorianCalendar getFechaFin() {
 		return fechaFin;
