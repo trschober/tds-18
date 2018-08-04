@@ -1,12 +1,13 @@
 package org.tds.sgh.business;
 
+import java.util.GregorianCalendar;
 import java.util.Map;
 
 public class Reserva {
 	
 	private String codigo ;
-	private String fechaFin;
-	private String fechaInicio;
+	private GregorianCalendar fechaFin;
+	private GregorianCalendar fechaInicio;
 	private Boolean modificacionPorHuesped;
 	private EstadoReserva estado;
 	private Map<String, Habitacion> habitaciones;
@@ -16,7 +17,7 @@ public class Reserva {
 	
 	public Habitacion getHabitacion(Integer CodigoHabitacion) throws Exception
 	{
-		Habitacion cliente = this.clientes.get(CodigoHabitacion);
+		Habitacion cliente = this.getHabitacion.get(CodigoHabitacion);
 		
 		if (cliente == null)
 		{
