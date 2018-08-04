@@ -31,9 +31,19 @@ public class Reserva {
 		this.fechaFin= _fechaFin;
 		
 	}	
-	public Habitacion getHabitacion(Integer CodigoHabitacion) throws Exception
+	
+	public Reserva()
 	{
-		Habitacion habitacion = null; //this.habitacion.getHabitacion(CodigoHabitacion);
+		this.fechaInicio= new GregorianCalendar();
+		this.fechaFin= new GregorianCalendar();
+		this.habitacion = new Habitacion(null, null);
+		this.estado = EstadoReserva.PENDIENTE;
+		//this.huespedes = new ArrayList<>();
+	}
+	
+	public Habitacion getHabitacion() throws Exception
+	{
+		//Habitacion habitacion = null; //this.habitacion.getHabitacion(CodigoHabitacion);
 		
 		if (habitacion == null)
 		{
@@ -89,9 +99,7 @@ public class Reserva {
 	public void setEstado(EstadoReserva estado) {
 		this.estado = estado;
 	}
-	public Habitacion getHabitacion() {
-		return habitacion;
-	}
+	
 	public void setHabitaciones(Habitacion habitacion) {
 		this.habitacion = habitacion;
 	}
