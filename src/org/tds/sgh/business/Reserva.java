@@ -117,17 +117,24 @@ public class Reserva {
 	public boolean ToparFecha (GregorianCalendar Fecha)
 	{
 		boolean FechaOk =this.fechaInicio.compareTo(Fecha)<=0 && this.fechaFin.compareTo(Fecha)>=0 ;
-		return FechaOk && EstaTomada();	
+		return FechaOk && getEstado() == EstadoReserva.TOMADA;	
 	}
-	public boolean EstaPendiente() {
-		return EstadoReserva.compareTo(EstadoReserva.) == 0;
+	
+	public void setCancelada(boolean cancelada){
+		if(cancelada){
+			this.estado = EstadoReserva.CANCELADA;
+		}	
 	}
-
-	public boolean EstaTomada() {
-		return EstadoReserva.compareTo(EstadoReserva.) == 0;
+	
+	public void setPendiente(boolean pendiente){
+		if(pendiente){
+			this.estado = EstadoReserva.PENDIENTE;
+		}	
 	}
-
-	public boolean EstaCancelada() {
-		return EstadoReserva.compareTo(EstadoReserva.) == 0;
+	
+	public void setTomada(boolean tomada){
+		if(tomada){
+			this.estado = EstadoReserva.TOMADA;
+		}	
 	}
 }
