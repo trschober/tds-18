@@ -1,5 +1,6 @@
 package org.tds.sgh.business;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -34,20 +35,22 @@ public class Reserva {
 		
 	}	
 	
+	
 	public Reserva()
 	{
 		this.fechaInicio= new GregorianCalendar();
 		this.fechaFin= new GregorianCalendar();
 		this.habitacion = new Habitacion(null, null);
 		this.estado = EstadoReserva.PENDIENTE;
-		//this.huespedes = new ArrayList<>();
+		this.huespedes = new ArrayList<Huesped>();
+		this.cliente = new Cliente();
+		this.hotel = new Hotel();
+		
 	}
 	
 	
 	public Habitacion getHabitacion() throws Exception
-	{
-
-		//Habitacion habitacion = null; //this.habitacion.getHabitacion(CodigoHabitacion);
+	{		
 		
 		if (habitacion == null)
 		{

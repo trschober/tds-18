@@ -16,6 +16,15 @@ public class Cliente
 	
 	// --------------------------------------------------------------------------------------------
 	
+	public Cliente()
+	{
+		this.direccion = "";		
+		this.mail = "";		
+		this.nombre = "";		
+		this.rut = "";		
+		this.telefono = "";
+	}
+	
 	public Cliente(String rut, String nombre, String direccion, String telefono, String mail)
 	{
 		this.direccion = direccion;

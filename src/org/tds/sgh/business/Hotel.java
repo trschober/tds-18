@@ -1,8 +1,10 @@
 package org.tds.sgh.business;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,22 +15,24 @@ public class Hotel
 {
 	// --------------------------------------------------------------------------------------------
 	
-	private Map<String, Habitacion> habitaciones;
-	
-	private Map<String, Reserva> reservas;
-	
-	private String nombre;
-	
+	private List<Habitacion> habitaciones;	
+	private List<Reserva> reservas;	
+	private String nombre;	
 	private String pais;
 	
 	// --------------------------------------------------------------------------------------------
+	public Hotel()
+	{		
+		this.habitaciones = new ArrayList<Habitacion>();		
+		this.reservas = new ArrayList<Reserva>();
+		this.nombre = "";		
+		this.pais = "";
+	}
 	
 	public Hotel(String nombre, String pais)
 	{
-		this.habitaciones = new HashMap<String, Habitacion>();
-		
-		this.nombre = nombre;
-		
+		this.habitaciones = new ArrayList<Habitacion>();			
+		this.nombre = nombre;		
 		this.pais = pais;
 	}
 	
