@@ -2,7 +2,9 @@ package org.tds.sgh.business;
 
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class Reserva {
@@ -131,6 +133,34 @@ public class Reserva {
 	public boolean EstaTomada() {
 		return estado.compareTo(EstadoReserva.TOMADA) == 0;
 	}
+	
+	public int CoincideTipoHabitacion(GregorianCalendar _fechaInicio,GregorianCalendar _fechaFin )
+	{		
+		//Set<Habitacion> HabitacionEncontradas = new HashSet<Habitacion>();
+		int Coincide=0;
+		//for (Habitacion habitacion : this.Habitaciones.values())
+		//{
+			//if (habitacion.coincideElNombre(patronNombreCliente))
+			//{
+				Coincide++;
+			//}
+		//}		
+		return Coincide;
+	}
+	public int CoincideReserva(GregorianCalendar _fechaInicio,GregorianCalendar _fechaFin )
+	{		
+		//Set<Habitacion> HabitacionEncontradas = new HashSet<Habitacion>();
+		int Coincide=0;
+		//for (Habitacion habitacion : this.Habitaciones.values())
+		//{
+			//if (habitacion.coincideElNombre(patronNombreCliente))
+			//{
+				Coincide++;
+			//}
+		//}		
+		return Coincide;
+	}
+	
 
 	
 }
