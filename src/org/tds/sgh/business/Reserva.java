@@ -131,6 +131,7 @@ public class Reserva {
 	}
 	public boolean EstaTomada() {
 		return estado.compareTo(EstadoReserva.TOMADA) == 0;
+	}
 
 	
 	public void setCancelada(boolean cancelada){
