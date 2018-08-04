@@ -6,6 +6,7 @@ import java.util.Set;
 import org.tds.sgh.business.Cliente;
 import org.tds.sgh.business.Habitacion;
 import org.tds.sgh.business.Hotel;
+import org.tds.sgh.business.Huesped;
 import org.tds.sgh.business.Reserva;
 import org.tds.sgh.business.TipoHabitacion;
 
@@ -56,6 +57,10 @@ public class DTO
 		return new TipoHabitacionDTO(tipoHabitation.getNombre());
 	}
 	
+	public HuespedDTO map(Huesped huesped)
+	{
+		return new HuespedDTO(huesped.GetNombre(), huesped.GetDocumento());
+	}
 	
 	public Set<ClienteDTO> mapClientes(Set<Cliente> clientes)
 	{
