@@ -31,14 +31,14 @@ public class Reserva {
 	}	
 	public Habitacion getHabitacion(Integer CodigoHabitacion) throws Exception
 	{
-		Habitacion habitacion = this.habitacion.get(CodigoHabitacion);
+		Habitacion habitacion = this.habitaciones.get(CodigoHabitacion);
 		
 		if (habitacion == null)
 		{
 			throw new Exception("No existe una habitacion con el nombre indicado.");
 		}
 		
-		return Habitacion;
+		return habitacion;
 	}
 	public GregorianCalendar getFechaFin() {
 		return fechaFin;
