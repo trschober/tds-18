@@ -34,11 +34,8 @@ public class HacerReservaController implements IHacerReservaController {
 	}
 
 	@Override
-	public ClienteDTO seleccionarCliente(String rut) throws Exception {
-		
-		Cliente cliente = cadenaHotelera.buscarCliente(rut);
-		
-		return DTO.map(cliente);
+	public ClienteDTO seleccionarCliente(String rut) throws Exception {		
+		return DTO.map(cadenaHotelera.buscarCliente(rut));		
 	}
 
 	@Override
