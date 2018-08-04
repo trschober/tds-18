@@ -15,6 +15,8 @@ public class Hotel
 	
 	private Map<String, Habitacion> habitaciones;
 	
+	private Map<String, Reserva> reservas;
+	
 	private String nombre;
 	
 	private String pais;
@@ -61,26 +63,74 @@ public class Hotel
 		return new HashSet<Habitacion>(this.habitaciones.values());
 	}
 	
-	public Reserva getReserva(int numerocliente) { 
+	public Reserva seleccionarPorCodigoReserva(String codigoReserva) throws Exception { 
 		
-		throw new NotImplementedException();
+		if (!this.reservas.containsKey(codigoReserva))
+		{
+			throw new Exception("No existe el código de reserva indicado.");
+		}
+		
+		return this.reservas.get(codigoReserva);
 	}
 	
 	public Set<Reserva> getReservas(){
-		throw new NotImplementedException();
+		
+		return new HashSet<Reserva>(this.reservas.values());
 	}
 	
 	public Boolean confirmarDisponibilidad( TipoHabitacion th, GregorianCalendar fi, GregorianCalendar ff  ) {
-		throw new NotImplementedException();
+		
+		int capacidadPorTipHabitacion = this.calcularCapacidad(th);
+		int reservasConConflicto = this.calcularMaxReservasConConflictos(th, fi, ff);
+		
+		return capacidadPorTipHabitacion > reservasConConflicto;
+		
 	}
 	
-	public Set<Reserva> buscarReservasPendientes() {
-		throw new NotImplementedException();
-	}
-	
-	public int calcularCapacidad(TipoHabitacion th, GregorianCalendar fi, GregorianCalendar ff  ) {
-		throw new NotImplementedException();
+	//TODO Mejorar algoritmo para calcular conflictos de fechas
+	private int calcularMaxReservasConConflictos(TipoHabitacion th, GregorianCalendar fi, GregorianCalendar ff) {
+		
+		int conflicto = 0;
+		
+		for(Reserva r : this.reservas.values()) {
+			
+			 if ( r.toparFecha(fi, ff) && r.getHabitacion().getTipoHabitacion() == th ) {
+				 conflicto++;
+			 }
+		}
+		
+		return conflicto;
 	}
 
+	public Set<Reserva> buscarReservasPendientes() {
+		
+		
+		Set<Reserva> reservasPendientes = new HashSet<Reserva>();
+		
+		for (Reserva reserva : this.reservas.values())
+		{
+			if (reserva.getEstado() == EstadoReserva.PENDIENTE)
+			{
+				reservasPendientes.add(reserva);
+			}
+		}
+		
+		return reservasPendientes;
+	}
 	
+	public int calcularCapacidad(TipoHabitacion th) {
+		
+         int capacidad = 0;
+		
+		for (Habitacion habitacion : this.habitaciones.values())
+		{
+			if (habitacion.getTipoHabitacion().getCodigo() == th.getCodigo())
+			{
+				capacidad++;
+			}
+		}
+		
+		return capacidad;
+		
+	}
 }
