@@ -9,10 +9,10 @@ import java.util.Set;
 
 public class Reserva {
 	
-	private Long codigo ;
+	private long codigo ;
 	private GregorianCalendar fechaFin;
 	private GregorianCalendar fechaInicio;
-	private Boolean modificacionPorHuesped;
+	private boolean modificacionPorHuesped;
 	private EstadoReserva estado;
 	private Habitacion habitacion;
 	private List<Huesped> huespedes;
@@ -20,13 +20,13 @@ public class Reserva {
 	private Cliente cliente ;
 	
 	
-	public Long getCodigo() {
+	public long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(Long codigo) {
+	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	} 	
-	public Reserva(Long _Codigo , GregorianCalendar _fechaInicio, GregorianCalendar _fechaFin)
+	public Reserva(long _Codigo , GregorianCalendar _fechaInicio, GregorianCalendar _fechaFin)
 	{
 		this.codigo =_Codigo;
 		this.fechaInicio=_fechaInicio;
