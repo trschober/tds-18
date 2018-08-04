@@ -33,7 +33,8 @@ public class Hotel
 	
 	public Hotel(String nombre, String pais)
 	{
-		this.habitaciones = new HashMap<String, Habitacion>();			
+		this.habitaciones = new HashMap<String, Habitacion>();	
+		this.reservas =  new HashMap<String, Reserva>();
 		this.nombre = nombre;		
 		this.pais = pais;
 	}
