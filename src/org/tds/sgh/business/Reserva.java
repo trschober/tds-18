@@ -33,7 +33,7 @@ public class Reserva {
 	}	
 	public Habitacion getHabitacion(Integer CodigoHabitacion) throws Exception
 	{
-		Habitacion habitacion = this.habitacion.getHabitacion(CodigoHabitacion);
+		Habitacion habitacion = null; //this.habitacion.getHabitacion(CodigoHabitacion);
 		
 		if (habitacion == null)
 		{
