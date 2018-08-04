@@ -57,7 +57,7 @@ public class DTO
 		return new TipoHabitacionDTO(tipoHabitation.getNombre());
 	}
 	
-	public HuespedDTO map(Huesped huesped)
+	public HuespedDTO map( Huesped huesped)
 	{
 		return new HuespedDTO(huesped.GetNombre(), huesped.GetDocumento());
 	}
@@ -108,5 +108,17 @@ public class DTO
 		}
 		
 		return tiposHabitacionDTO;
+	}
+	
+	public Set<HuespedDTO> mapHuesped(Set<Huesped> huespedes)
+	{
+		Set<HuespedDTO> huespedesDTO = new HashSet<HuespedDTO>();
+		
+		for (Huesped huesped : huespedes)
+		{
+			huespedesDTO.add(this.map(huesped));
+		}
+		
+		return huespedesDTO;
 	}
 }
