@@ -51,6 +51,28 @@ public class Reserva {
 		
 		return huesped;
 	}
+	//public Hotel getHotel(Integer CodigoHotel) throws Exception
+	//{
+		//Hotel hotel = this.hotel.get(CodigoHotel);
+		
+		//if (hotel == null)
+		//{
+			//throw new Exception("No existe un hotel con el codigo indicado.");
+		//}
+		
+		//return hotel;
+	//}
+	public Hotel getHotel(Integer CodigoHotel) throws Exception
+	{
+		Hotel hotel = this.hotel.get(CodigoHotel);
+		
+		if (hotel == null)
+		{
+			throw new Exception("No existe un hotel con el codigo indicado.");
+		}
+		
+		return hotel;
+	}
 	public GregorianCalendar getFechaFin() {
 		return fechaFin;
 	}

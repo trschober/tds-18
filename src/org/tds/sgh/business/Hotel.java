@@ -81,4 +81,6 @@ public class Hotel
 	public int calcularCapacidad(TipoHabitacion th, GregorianCalendar fi, GregorianCalendar ff  ) {
 		throw new NotImplementedException();
 	}
+
+	
 }
