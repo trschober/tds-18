@@ -28,4 +28,8 @@ public class Habitacion
 	{
 		return this.tipoHabitacion;
 	}
+	public Habitacion getHabitacion()
+	{
+		return this.tipoHabitacion;
+	}
 }
