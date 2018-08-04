@@ -12,10 +12,11 @@ public class Reserva {
 	private GregorianCalendar fechaInicio;
 	private Boolean modificacionPorHuesped;
 	private EstadoReserva estado;
-	private List<Habitacion> habitaciones;
+	private Habitacion habitacion;
 	private List<Huesped> huespedes;
 	private Hotel hotel ;
 	private Cliente cliente ;
+	
 	
 	public String getCodigo() {
 		return codigo;
@@ -32,7 +33,7 @@ public class Reserva {
 	}	
 	public Habitacion getHabitacion(Integer CodigoHabitacion) throws Exception
 	{
-		Habitacion habitacion = this.habitaciones.get(CodigoHabitacion);
+		Habitacion habitacion = this.habitacion.getHabitacion(CodigoHabitacion);
 		
 		if (habitacion == null)
 		{
@@ -88,11 +89,11 @@ public class Reserva {
 	public void setEstado(EstadoReserva estado) {
 		this.estado = estado;
 	}
-	public List<Habitacion> getHabitaciones() {
-		return habitaciones;
+	public Habitacion getHabitacion() {
+		return habitacion;
 	}
-	public void setHabitaciones(List<Habitacion> habitaciones) {
-		this.habitaciones = habitaciones;
+	public void setHabitaciones(Habitacion habitacion) {
+		this.habitacion = habitacion;
 	}
 	public List<Huesped> getHuespedes() {
 		return huespedes;
@@ -113,5 +114,20 @@ public class Reserva {
 		this.cliente = cliente;
 	}
 	
-	
+	public boolean ToparFecha (GregorianCalendar Fecha)
+	{
+		boolean FechaOk =this.fechaInicio.compareTo(Fecha)<=0 && this.fechaFin.compareTo(Fecha)>=0 ;
+		return FechaOk && EstaTomada();	
+	}
+	public boolean EstaPendiente() {
+		return EstadoReserva.compareTo(EstadoReserva.) == 0;
+	}
+
+	public boolean EstaTomada() {
+		return EstadoReserva.compareTo(EstadoReserva.) == 0;
+	}
+
+	public boolean EstaCancelada() {
+		return EstadoReserva.compareTo(EstadoReserva.) == 0;
+	}
 }
