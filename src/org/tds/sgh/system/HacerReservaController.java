@@ -4,6 +4,8 @@ import java.util.GregorianCalendar;
 import java.util.Set;
 
 import org.tds.sgh.business.CadenaHotelera;
+import org.tds.sgh.business.Cliente;
+import org.tds.sgh.business.Hotel;
 import org.tds.sgh.dtos.ClienteDTO;
 import org.tds.sgh.dtos.DTO;
 import org.tds.sgh.dtos.HotelDTO;
@@ -16,6 +18,8 @@ public class HacerReservaController implements IHacerReservaController {
 	// --------------------------------------------------------------------------------------------
 	
 	private CadenaHotelera cadenaHotelera;
+	private Hotel hotel;
+
 	
 	// --------------------------------------------------------------------------------------------
 	
@@ -26,14 +30,15 @@ public class HacerReservaController implements IHacerReservaController {
 	
 	@Override
 	public Set<ClienteDTO> buscarCliente(String patronNombreCliente) {
-		// TODO Auto-generated method stub
-		return null;
+		return DTO.mapClientes(cadenaHotelera.buscarClientes(patronNombreCliente));
 	}
 
 	@Override
 	public ClienteDTO seleccionarCliente(String rut) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Cliente cliente = cadenaHotelera.buscarCliente(rut);
+		
+		return DTO.map(cliente);
 	}
 
 	@Override
@@ -46,8 +51,8 @@ public class HacerReservaController implements IHacerReservaController {
 	@Override
 	public boolean confirmarDisponibilidad(String nombreHotel, String nombreTipoHabitacion,
 			GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+
+		return cadenaHotelera.confirmarDisponibilidad(nombreHotel, nombreTipoHabitacion, fechaInicio, fechaFin);
 	}
 
 	@Override
