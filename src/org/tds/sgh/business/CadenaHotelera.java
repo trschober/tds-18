@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.tds.sgh.dtos.ReservaDTO;
+
 
 public class CadenaHotelera
 {
@@ -157,5 +159,11 @@ public class CadenaHotelera
 		Hotel h = this.buscarHotel(nombreHotel);
 		boolean a = h.confirmarDisponibilidad(nombreTipoHabitacion, fechaInicio, fechaFin)
 		return a;
+	}
+
+	public ReservaDTO registrarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
+			GregorianCalendar fechaFin, boolean modificablePorHuesped) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

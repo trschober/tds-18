@@ -59,7 +59,8 @@ public class HacerReservaController implements IHacerReservaController {
 	public ReservaDTO registrarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin, boolean modificablePorHuesped) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return cadenaHotelera.registrarReserva(nombreHotel, nombreTipoHabitacion, fechaInicio, fechaFin, modificablePorHuesped);
+;
 	}
 
 	@Override
