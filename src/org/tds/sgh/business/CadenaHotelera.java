@@ -155,9 +155,9 @@ public class CadenaHotelera
 	}
 
 	public boolean confirmarDisponibilidad(String nombreHotel, String nombreTipoHabitacion,
-			GregorianCalendar fechaInicio, GregorianCalendar fechaFin) {
+			GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
 		Hotel h = this.buscarHotel(nombreHotel);
-		boolean a = h.confirmarDisponibilidad(nombreTipoHabitacion, fechaInicio, fechaFin)
+		boolean a = h.confirmarDisponibilidad(nombreTipoHabitacion, fechaInicio, fechaFin);
 		return a;
 	}
 
