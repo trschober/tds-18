@@ -31,17 +31,17 @@ public class Reserva {
 		this.fechaFin= _fechaFin;
 		
 	}	
-	public Habitacion getHabitacion(Integer CodigoHabitacion) throws Exception
-	{
-		Habitacion habitacion = null; //this.habitacion.getHabitacion(CodigoHabitacion);
+	//public Habitacion getHabitacion(Integer CodigoHabitacion) throws Exception
+	//{
+		//Habitacion habitacion = null; //this.habitacion.getHabitacion(CodigoHabitacion);
 		
-		if (habitacion == null)
-		{
-			throw new Exception("No existe una habitacion con el codigo indicado.");
-		}
+		//if (habitacion == null)
+		//{
+		//	throw new Exception("No existe una habitacion con el codigo indicado.");
+		//}
 		
-		return habitacion;
-	}
+		//return habitacion;
+	//}
 	public Huesped getHuesped(Integer CodigoHuesped) throws Exception
 	{
 		Huesped huesped = this.huespedes.get(CodigoHuesped);
@@ -114,12 +114,11 @@ public class Reserva {
 		this.cliente = cliente;
 	}
 	
-	public boolean ToparFecha (GregorianCalendar Fecha)
+	public boolean ToparFecha (GregorianCalendar _fechaInico,GregorianCalendar fechaFin)
 	{
-		boolean FechaOk =this.fechaInicio.compareTo(Fecha)<=0 && this.fechaFin.compareTo(Fecha)>=0 ;
+		boolean FechaOk =this.fechaInicio.compareTo(_fechaInico)<=0 && this.fechaFin.compareTo(fechaFin)>=0 ;
 		return FechaOk && getEstado() == EstadoReserva.TOMADA;	
 	}
-
 	public boolean EstaPendiente() {
 		return estado.compareTo(EstadoReserva.PENDIENTE) == 0;
 	}
