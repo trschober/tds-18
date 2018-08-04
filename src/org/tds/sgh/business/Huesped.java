@@ -14,16 +14,20 @@ public class Huesped {
 	public Huesped(String codigo)
 	{
 			
+		//TODO: con el código obtenemos un nuevo huesped
+		
 		this.nombre = "";		
 		this.codigo = codigo;
 		this.documento = "";
 	}
 	
-	public Huesped GetHuesped(String codigo)
-	{
-		
-		Huesped huesped = new Huesped(codigo);
-		
-		return huesped;
+	public String GetNombre()
+	{				
+		return this.nombre;
+	}
+	
+	public String GetDocumento()
+	{				
+		return this.documento;
 	}
 }

@@ -36,7 +36,7 @@ public class Hotel
 	{
 		if (this.habitaciones.containsKey(nombre))
 		{
-			throw new Exception("El hotel ya tiene una habitaciÃ³n con el nombre indicado.");
+			throw new Exception("El hotel ya tiene una habitación con el nombre indicado.");
 		}
 		
 		Habitacion habitacion = new Habitacion(tipoHabitacion, nombre);
