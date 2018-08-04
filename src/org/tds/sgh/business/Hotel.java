@@ -93,12 +93,13 @@ public class Hotel
 			}
 		}
 		
+		//boolean Reserva = true;
 		int capacidadPorTipHabitacion = this.calcularCapacidad(th);
 		int reservasConConflicto = this.calcularMaxReservasConConflictos(th, fi, ff);
 		
 		return capacidadPorTipHabitacion > reservasConConflicto;
 		
-	}
+	}	
 	
 	//TODO Mejorar algoritmo para calcular conflictos de fechas
 	private int calcularMaxReservasConConflictos(TipoHabitacion th, GregorianCalendar fi, GregorianCalendar ff) {
