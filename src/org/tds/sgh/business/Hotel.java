@@ -1,9 +1,12 @@
 package org.tds.sgh.business;
 
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import org.tds.sgh.infrastructure.NotImplementedException;
 
 
 public class Hotel
@@ -56,5 +59,26 @@ public class Hotel
 	public Set<Habitacion> listarHabitaciones()
 	{
 		return new HashSet<Habitacion>(this.habitaciones.values());
+	}
+	
+	public Reserva getReserva(int numerocliente) { 
+		
+		throw new NotImplementedException();
+	}
+	
+	public Set<Reserva> getReservas(){
+		throw new NotImplementedException();
+	}
+	
+	public Boolean confirmarDisponibilidad( TipoHabitacion th, GregorianCalendar fi, GregorianCalendar ff  ) {
+		throw new NotImplementedException();
+	}
+	
+	public Set<Reserva> buscarReservasPendientes() {
+		throw new NotImplementedException();
+	}
+	
+	public int calcularCapacidad(TipoHabitacion th, GregorianCalendar fi, GregorianCalendar ff  ) {
+		throw new NotImplementedException();
 	}
 }
