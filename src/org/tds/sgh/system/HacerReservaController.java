@@ -60,7 +60,7 @@ public class HacerReservaController implements IHacerReservaController {
 			GregorianCalendar fechaFin, boolean modificablePorHuesped) throws Exception {
 		// TODO Auto-generated method stub
 		return cadenaHotelera.registrarReserva(nombreHotel, nombreTipoHabitacion, fechaInicio, fechaFin, modificablePorHuesped);
-;
+
 	}
 
 	@Override
