@@ -2,7 +2,8 @@ package org.tds.sgh.business;
 
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+
 
 public class Reserva {
 	
@@ -11,8 +12,8 @@ public class Reserva {
 	private GregorianCalendar fechaInicio;
 	private Boolean modificacionPorHuesped;
 	private EstadoReserva estado;
-	private Map<String, Habitacion> habitaciones;
-	private Map<String, Huesped> huespedes;
+	private List<Habitacion> habitaciones;
+	private List<Huesped> huespedes;
 	private Hotel hotel ;
 	private Cliente cliente ;
 	
@@ -51,6 +52,18 @@ public class Reserva {
 		
 		return huesped;
 	}
+	//public Hotel getHotel(Integer CodigoHotel) throws Exception
+	//{
+		//Hotel hotel = this.hotel.get(CodigoHotel);
+		
+		//if (hotel == null)
+		//{
+			//throw new Exception("No existe un hotel con el codigo indicado.");
+		//}
+		
+		//return hotel;
+	//}
+	
 	public GregorianCalendar getFechaFin() {
 		return fechaFin;
 	}
@@ -75,16 +88,16 @@ public class Reserva {
 	public void setEstado(EstadoReserva estado) {
 		this.estado = estado;
 	}
-	public Map<String, Habitacion> getHabitaciones() {
+	public List<Habitacion> getHabitaciones() {
 		return habitaciones;
 	}
-	public void setHabitaciones(Map<String, Habitacion> habitaciones) {
+	public void setHabitaciones(List<Habitacion> habitaciones) {
 		this.habitaciones = habitaciones;
 	}
-	public Map<String, Huesped> getHuespedes() {
+	public List<Huesped> getHuespedes() {
 		return huespedes;
 	}
-	public void setHuespedes(Map<String, Huesped> huespedes) {
+	public void setHuespedes(List<Huesped> huespedes) {
 		this.huespedes = huespedes;
 	}
 	public Hotel getHotel() {
