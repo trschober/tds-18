@@ -19,7 +19,7 @@ public class Reserva {
 	private ArrayList<Huesped> huespedes;
 	private Hotel hotel ;
 	private Cliente cliente ;
-	
+	private TipoHabitacion tipoHabitacion;
 	
 	public long getCodigo() {
 		return codigo;
@@ -29,10 +29,13 @@ public class Reserva {
 	} 	
 	public Reserva(String nombreTipoHabitacion, GregorianCalendar _fechaInicio, GregorianCalendar _fechaFin)
 	{
+		
+		TipoHabitacion th = new TipoHabitacion("holaaa");
+		
 		this.codigo =0;
 		this.fechaInicio=_fechaInicio;
 		this.fechaFin= _fechaFin;
-		this.habitacion = new Habitacion(null, null);
+		this.habitacion = new Habitacion(th, nombreTipoHabitacion);
 		this.estado = EstadoReserva.PENDIENTE;
 		this.huespedes = new ArrayList<Huesped>();
 		this.hotel = new Hotel();
