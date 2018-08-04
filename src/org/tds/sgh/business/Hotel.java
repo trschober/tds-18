@@ -84,32 +84,23 @@ public class Hotel
 	}
 	
 	public boolean confirmarDisponibilidad( String nth, GregorianCalendar fi, GregorianCalendar ff  ) throws Exception {
-		
-		TipoHabitacion th = null;
-		
-		for(Habitacion h : habitaciones.values()) {
-			if (h.getTipoHabitacion().getNombre().equals(nth)  ) {
-				th = h.getTipoHabitacion();
-			}
-		}
-		
-		
+				
 		//boolean Reserva = true;
-		int capacidadPorTipHabitacion = this.calcularCapacidad(th);
-		int reservasConConflicto = this.calcularMaxReservasConConflictos(th, fi, ff);
+		int capacidadPorTipHabitacion = this.calcularCapacidad(nth);
+		int reservasConConflicto = this.calcularMaxReservasConConflictos(nth, fi, ff);
 		
 		return capacidadPorTipHabitacion > reservasConConflicto;
 		
 	}	
 	
 	//TODO Mejorar algoritmo para calcular conflictos de fechas
-	private int calcularMaxReservasConConflictos(TipoHabitacion th, GregorianCalendar fi, GregorianCalendar ff) throws Exception {
+	private int calcularMaxReservasConConflictos(String nth, GregorianCalendar fi, GregorianCalendar ff) throws Exception {
 		
 		int conflicto = 0;
 		
 		for(Reserva r : this.reservas.values()) {
 			
-			 if ( r.ToparFecha(fi, ff) && r.getHabitacion().getTipoHabitacion() == th ) {
+			 if ( r.ToparFecha(fi, ff) && r.getHabitacion().getTipoHabitacion().getNombre().equals(nth) ) {
 				 conflicto++;
 			 }
 		}
@@ -133,14 +124,14 @@ public class Hotel
 		return reservasPendientes;
 	}
 	
-	public int calcularCapacidad(TipoHabitacion th) {
+	public int calcularCapacidad(String nth) {
 		
          int capacidad = 0;
 		
 		for (Habitacion habitacion : this.habitaciones.values())
 		{
 			//TODO revisar si se compara nombre en lugar de código de habitación
-			if (habitacion.getTipoHabitacion().getCodigo() == th.getCodigo())
+			if (habitacion.getTipoHabitacion().getNombre().equals(nth))
 			{
 				capacidad++;
 			}
