@@ -4,14 +4,16 @@ import java.util.GregorianCalendar;
 import java.util.Set;
 
 import org.tds.sgh.business.CadenaHotelera;
+import org.tds.sgh.business.Reserva;
 import org.tds.sgh.dtos.ClienteDTO;
+import org.tds.sgh.dtos.DTO;
 import org.tds.sgh.dtos.HotelDTO;
 import org.tds.sgh.dtos.ReservaDTO;
 
 public class TomarReservaController implements ITomarReservaController {
 
 	private CadenaHotelera cadenaHotelera;
-	
+	private final DTO DTO = org.tds.sgh.dtos.DTO.getInstance();
 	// --------------------------------------------------------------------------------------------
 	
 	public TomarReservaController(CadenaHotelera cadenaHotelera)
@@ -23,7 +25,9 @@ public class TomarReservaController implements ITomarReservaController {
 	@Override
 	public Set<ReservaDTO> buscarReservasDelCliente() throws Exception {
 		// TODO Auto-generated method stub
+		Reserva r = new Reserva();
 		
+		//return DTO;
 		return null;
 	}
 
