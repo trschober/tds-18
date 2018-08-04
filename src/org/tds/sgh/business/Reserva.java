@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class Reserva {
 	
-	private String codigo ;
+	private Long codigo ;
 	private GregorianCalendar fechaFin;
 	private GregorianCalendar fechaInicio;
 	private Boolean modificacionPorHuesped;
@@ -20,13 +20,13 @@ public class Reserva {
 	private Cliente cliente ;
 	
 	
-	public String getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(String codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	} 	
-	public Reserva(String _Codigo , GregorianCalendar _fechaInicio, GregorianCalendar _fechaFin)
+	public Reserva(Long _Codigo , GregorianCalendar _fechaInicio, GregorianCalendar _fechaFin)
 	{
 		this.codigo =_Codigo;
 		this.fechaInicio=_fechaInicio;
