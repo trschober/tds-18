@@ -127,11 +127,20 @@ public class Reserva {
 		this.cliente = cliente;
 	}
 	
-	public boolean ToparFecha (GregorianCalendar _fechaInico,GregorianCalendar fechaFin)
-	{
-		boolean FechaOk =this.fechaInicio.compareTo(_fechaInico)<=0 && this.fechaFin.compareTo(fechaFin)>=0 ;
-		return FechaOk && getEstado() == EstadoReserva.TOMADA;	
+	public boolean ToparFecha(GregorianCalendar fechaInico, GregorianCalendar fechaFin) {
+		
+		boolean conflicto = true;
+		
+		if (this.fechaInicio.compareTo(fechaInico) < 0 && this.fechaFin.compareTo(fechaInico) < 0) {
+			conflicto = false;
+		} else if (this.fechaInicio.compareTo(fechaFin) > 0 && this.fechaFin.compareTo(fechaFin) > 0) {
+			conflicto = false;
+		} 
+
+		return conflicto;
+		
 	}
+	
 	public boolean EstaPendiente() {
 		return estado.compareTo(EstadoReserva.PENDIENTE) == 0;
 	}
