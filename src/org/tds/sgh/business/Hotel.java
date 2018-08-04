@@ -145,12 +145,29 @@ public class Hotel
 		
 	}
 
+	public Set<Reserva> obtenerReservasCliente(Cliente C)
+	{
+		Set<Reserva> Obj = new HashSet<>();
+		 
+		for (Reserva r : this.reservas.values())
+		{
+			
+			if (r.getCliente()==C)
+			{
+				Obj.add(r);
+			}
+		}
+		
+		return Obj; 
+		
+	}
+	
 	public ReservaDTO registrarReserva(String nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin) throws Exception {
 		
 		Reserva r = new Reserva(nombreTipoHabitacion, fechaFin, fechaFin);
 		
-		reservas.put( Long.toString(r.getCodigo()),r);
+		reservas.put(Long.toString(r.getCodigo()),r);
 		
 		
 		return DTO.map(r);

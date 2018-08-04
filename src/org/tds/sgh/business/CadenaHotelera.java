@@ -184,4 +184,15 @@ public class CadenaHotelera
 
 		return hotelesDTO;
 	}
+
+	public Set<Reserva> BuscarReservaCliente(Cliente cliente) {
+		Set<Reserva> Obj = new HashSet<>();
+		
+		for (Hotel hotel : hoteles.values()) {		
+			
+			Obj.addAll(hotel.obtenerReservasCliente(cliente));
+		}
+		
+		return Obj;
+	}
 }

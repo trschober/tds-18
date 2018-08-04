@@ -19,6 +19,7 @@ public class ControllerFactory implements IControllerFactory
 	
 	// --------------------------------------------------------------------------------------------
 	
+	 
 	@Override
 	public ICadenaController createCadenaController()
 	{
@@ -29,7 +30,8 @@ public class ControllerFactory implements IControllerFactory
 	public ICancelarReservaController createCancelarReservaController()
 	{
 		// TODO
-		throw new NotImplementedException();
+		return new CancelarReservaController(cadenaHotelera);
+				 
 	}
 	
 	@Override

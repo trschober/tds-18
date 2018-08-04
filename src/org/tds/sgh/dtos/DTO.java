@@ -70,7 +70,21 @@ public class DTO
 		HuespedDTO[] y = x.toArray(new HuespedDTO[0]);
 		return new ReservaDTO(reserva.getCodigo(), reserva.getCliente().getRut(), reserva.getHotel().getNombre(),reserva.getHabitacion().getTipoHabitacion().getNombre() , reserva.getFechaInicio(), reserva.getFechaFin(), reserva.getModificacionPorHuesped(),reserva.getEstado().toString(),reserva.getHabitacion().getNombre() , y);
 							
-	}		
+	}	
+	
+	
+	public Set<ReservaDTO> mapResevas(Set<Reserva> reservas) throws Exception
+	{
+		Set<ReservaDTO> reservasDTO = new HashSet<ReservaDTO>();
+		
+		for (Reserva reserva : reservas)
+		{
+			reservasDTO.add(this.map(reserva));
+		}
+		
+		return reservasDTO;
+	}
+	
 	public Set<ClienteDTO> mapClientes(Set<Cliente> clientes)
 	{
 		Set<ClienteDTO> clientesDTO = new HashSet<ClienteDTO>();
