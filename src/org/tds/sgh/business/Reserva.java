@@ -28,11 +28,9 @@ public class Reserva {
 		this.codigo = codigo;
 	} 	
 	public Reserva(String nombreTipoHabitacion, GregorianCalendar _fechaInicio, GregorianCalendar _fechaFin)
-	{
-		
-		TipoHabitacion th = new TipoHabitacion("holaaa");
-		
-		this.codigo =0;
+	{		
+		TipoHabitacion th = new TipoHabitacion(nombreTipoHabitacion);
+		this.codigo = (long)Math.random()*10000;
 		this.fechaInicio=_fechaInicio;
 		this.fechaFin= _fechaFin;
 		this.habitacion = new Habitacion(th, nombreTipoHabitacion);
@@ -48,6 +46,7 @@ public class Reserva {
 		this.fechaFin= new GregorianCalendar();
 		this.habitacion = new Habitacion(null, null);
 		this.estado = EstadoReserva.PENDIENTE;
+		this.codigo = (long)Math.random()*10000;
 		//this.huespedes = new ArrayList<>();
 	}
 	
@@ -119,9 +118,9 @@ public class Reserva {
 	public List<Huesped> getHuespedes() {
 		return huespedes;
 	}
-	public void setHuespedes(List<Huesped> huespedes) {
-		this.huespedes = huespedes;
-	}
+	//public void setHuespedes(List<Huesped> huespedes) {
+	//	this.huespedes = huespedes;
+	//}
 	public Hotel getHotel() {
 		return hotel;
 	}

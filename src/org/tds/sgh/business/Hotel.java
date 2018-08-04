@@ -147,6 +147,7 @@ public class Hotel
 
 	public ReservaDTO registrarReserva(String nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin) throws Exception {
+		
 		Reserva r = new Reserva(nombreTipoHabitacion, fechaFin, fechaFin);
 		
 		reservas.put( Long.toString(r.getCodigo()),r);
