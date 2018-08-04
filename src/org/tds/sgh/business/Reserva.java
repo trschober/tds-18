@@ -1,6 +1,7 @@
 package org.tds.sgh.business;
 
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Reserva {
@@ -15,16 +16,33 @@ public class Reserva {
 	private Hotel hotel ;
 	private Cliente cliente ;
 	
+	public String getCodigo() {
+		return codigo;
+	}
+
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	} 
+	
+	public Reserva(String _Codigo , GregorianCalendar _fechaInicio, GregorianCalendar _fechaFin)
+	{
+		this.codigo =_Codigo;
+		this.fechaInicio=_fechaInicio;
+		this.fechaFin= _fechaFin;
+		
+	}
+	
 	public Habitacion getHabitacion(Integer CodigoHabitacion) throws Exception
 	{
-		Habitacion cliente = this.getHabitacion.get(CodigoHabitacion);
+		Habitacion habitacion = this.getHabitacion.get(CodigoHabitacion);
 		
-		if (cliente == null)
+		if (habitacion == null)
 		{
-			throw new Exception("No existe un cliente con el nombre indicado.");
+			throw new Exception("No existe una habitacion con el nombre indicado.");
 		}
 		
-		return cliente;
+		return Habitacion;
 	}
 	
 	
