@@ -24,6 +24,10 @@ public class Habitacion
 		return this.nombre;
 	}
 	
+	public void setTipoHabitacion(TipoHabitacion tipoHabitacion) {
+		this.tipoHabitacion = tipoHabitacion;
+	}
+
 	public TipoHabitacion getTipoHabitacion()
 	{
 		return this.tipoHabitacion;

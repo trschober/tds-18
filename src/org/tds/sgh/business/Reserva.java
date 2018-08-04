@@ -120,14 +120,15 @@ public class Reserva {
 		return FechaOk && EstaTomada();	
 	}
 	public boolean EstaPendiente() {
-		return EstadoReserva.compareTo(EstadoReserva.) == 0;
+		return estado.compareTo(EstadoReserva.PENDIENTE) == 0;
 	}
-
-	public boolean EstaTomada() {
-		return EstadoReserva.compareTo(EstadoReserva.) == 0;
-	}
-
 	public boolean EstaCancelada() {
-		return EstadoReserva.compareTo(EstadoReserva.) == 0;
+		return estado.compareTo(EstadoReserva.CANCELADA) == 0;
+	}
+	public boolean EstaNoTomada() {
+		return estado.compareTo(EstadoReserva.NO_TOMADA) == 0;
+	}
+	public boolean EstaTomada() {
+		return estado.compareTo(EstadoReserva.TOMADA) == 0;
 	}
 }
