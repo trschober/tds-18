@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.tds.sgh.dtos.DTO;
 import org.tds.sgh.dtos.ReservaDTO;
 import org.tds.sgh.dtos.TipoHabitacionDTO;
 import org.tds.sgh.infrastructure.NotImplementedException;
@@ -21,6 +22,7 @@ public class Hotel
 	private Map<String, Reserva> reservas;	
 	private String nombre;	
 	private String pais;
+	private final DTO DTO = org.tds.sgh.dtos.DTO.getInstance();
 	
 	// --------------------------------------------------------------------------------------------
 	public Hotel()
@@ -144,12 +146,12 @@ public class Hotel
 	}
 
 	public ReservaDTO registrarReserva(String nombreTipoHabitacion, GregorianCalendar fechaInicio,
-			GregorianCalendar fechaFin) {
+			GregorianCalendar fechaFin) throws Exception {
 		Reserva r = new Reserva(nombreTipoHabitacion, fechaFin, fechaFin);
-		reservas.put(r.getCodigo(),r);
+		
+		reservas.put( Long.toString(r.getCodigo()),r);
 		
 		
-		
-		return null;
+		return DTO.map(r);
 	}
 }

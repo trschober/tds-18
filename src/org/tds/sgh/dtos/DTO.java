@@ -69,7 +69,7 @@ public class DTO
 		Set<HuespedDTO> x = this.mapHuesped(reserva.getHuespedes().stream().collect(Collectors.toSet()));
 		HuespedDTO[] y = x.toArray(new HuespedDTO[0]);
 		return new ReservaDTO(reserva.getCodigo(), reserva.getCliente().getRut(), reserva.getHotel().getNombre(),reserva.getHabitacion().getTipoHabitacion().getNombre() , reserva.getFechaInicio(), reserva.getFechaFin(), reserva.getModificacionPorHuesped(),reserva.getEstado().toString(),reserva.getHabitacion().getNombre() , y);
-		//							(long codigo, 		String rutCliente, 				String hotel				,String tipoHabitacion						||, GregorianCalendar fechaInicio	, GregorianCalendar fechaFin, boolean modificablePorHuesped, String estado, 		String habitacion						, HuespedDTO... huespedes)
+							
 	}		
 	public Set<ClienteDTO> mapClientes(Set<Cliente> clientes)
 	{

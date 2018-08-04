@@ -1,5 +1,6 @@
 package org.tds.sgh.business;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,7 +16,7 @@ public class Reserva {
 	private boolean modificacionPorHuesped;
 	private EstadoReserva estado;
 	private Habitacion habitacion;
-	private List<Huesped> huespedes;
+	private ArrayList<Huesped> huespedes;
 	private Hotel hotel ;
 	private Cliente cliente ;
 	
@@ -26,12 +27,16 @@ public class Reserva {
 	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	} 	
-	public Reserva(long _Codigo , GregorianCalendar _fechaInicio, GregorianCalendar _fechaFin)
+	public Reserva(String nombreTipoHabitacion, GregorianCalendar _fechaInicio, GregorianCalendar _fechaFin)
 	{
-		this.codigo =_Codigo;
+		this.codigo =0;
 		this.fechaInicio=_fechaInicio;
 		this.fechaFin= _fechaFin;
-		
+		this.habitacion = new Habitacion(null, null);
+		this.estado = EstadoReserva.PENDIENTE;
+		this.huespedes = new ArrayList<Huesped>();
+		this.hotel = new Hotel();
+		this.cliente = new Cliente();
 	}	
 	
 	public Reserva()
