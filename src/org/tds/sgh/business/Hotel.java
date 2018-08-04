@@ -15,23 +15,23 @@ public class Hotel
 {
 	// --------------------------------------------------------------------------------------------
 	
-	private List<Habitacion> habitaciones;	
-	private List<Reserva> reservas;	
+	private Map<String, Habitacion> habitaciones;	
+	private Map<String, Reserva> reservas;	
 	private String nombre;	
 	private String pais;
 	
 	// --------------------------------------------------------------------------------------------
 	public Hotel()
 	{		
-		this.habitaciones = new ArrayList<Habitacion>();		
-		this.reservas = new ArrayList<Reserva>();
+		this.habitaciones =  new HashMap<String, Habitacion>();		
+		this.reservas =  new HashMap<String, Reserva>();
 		this.nombre = "";		
 		this.pais = "";
 	}
 	
 	public Hotel(String nombre, String pais)
 	{
-		this.habitaciones = new ArrayList<Habitacion>();			
+		this.habitaciones = new HashMap<String, Habitacion>();			
 		this.nombre = nombre;		
 		this.pais = pais;
 	}
@@ -98,7 +98,7 @@ public class Hotel
 		
 		for(Reserva r : this.reservas.values()) {
 			
-			 if ( r.ToparFecha(fi, ff) && r.getHabitacion().getTipoHabitacion() == th ) {
+			 if ( r.toparFecha(fi, ff) && r.getHabitacion().getTipoHabitacion() == th ) {
 				 conflicto++;
 			 }
 		}
