@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.tds.sgh.dtos.ReservaDTO;
 import org.tds.sgh.dtos.TipoHabitacionDTO;
 import org.tds.sgh.infrastructure.NotImplementedException;
 
@@ -139,7 +140,7 @@ public class Hotel
 		
 		for (Habitacion habitacion : this.habitaciones.values())
 		{
-			//TODO revisar si se compara nombre en lugar de código de habitación
+			//TODO revisar si se compara nombre en lugar de cï¿½digo de habitaciï¿½n
 			if (habitacion.getTipoHabitacion().getCodigo() == th.getCodigo())
 			{
 				capacidad++;
@@ -148,5 +149,11 @@ public class Hotel
 		
 		return capacidad;
 		
+	}
+
+	public ReservaDTO registrarReserva(String nombreTipoHabitacion, GregorianCalendar fechaInicio,
+			GregorianCalendar fechaFin) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
