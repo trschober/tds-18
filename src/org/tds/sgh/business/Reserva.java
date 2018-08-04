@@ -134,21 +134,4 @@ public class Reserva {
 	}
 
 	
-	public void setCancelada(boolean cancelada){
-		if(cancelada){
-			this.estado = EstadoReserva.CANCELADA;
-		}	
-	}
-	
-	public void setPendiente(boolean pendiente){
-		if(pendiente){
-			this.estado = EstadoReserva.PENDIENTE;
-		}	
-	}
-	
-	public void setTomada(boolean tomada){
-		if(tomada){
-			this.estado = EstadoReserva.TOMADA;
-		}	
-	}
 }
