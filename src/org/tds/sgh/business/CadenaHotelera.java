@@ -164,13 +164,24 @@ public class CadenaHotelera
 
 	public ReservaDTO registrarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin, boolean modificablePorHuesped) {
-		// TODO Auto-generated method stub
-		return null;
+		Hotel h = this.buscarHotel(nombreHotel);
+		
+		return h.registrarReserva(nombreTipoHabitacion, fechaInicio, fechaFin);
 	}
 
 	public Set<HotelDTO> sugerirAlternativas(String pais, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		Set<HotelDTO> hotelesDTO = new HashSet<HotelDTO>();
+
+		for (Hotel hotel : hoteles.values()) {
+			if (hotel.confirmarDisponibilidad(nombreTipoHabitacion,
+					fechaInicio, fechaFin)) {
+				hotelesDTO.add(new HotelDTO(hotel.getNombre(), hotel.getPais()));
+			}
+		}
+
+		return hotelesDTO;
 	}
 }
