@@ -119,7 +119,7 @@ public class Hotel
 		
 		for (Reserva reserva : this.reservas.values())
 		{
-			if (reserva.getEstado() == EstadoReserva.PENDIENTE)
+			if (reserva.getEstado() == EstadoReserva.Pendiente)
 			{
 				reservasPendientes.add(reserva);
 			}
@@ -163,9 +163,9 @@ public class Hotel
 	}
 	
 	public ReservaDTO registrarReserva(String nombreTipoHabitacion, GregorianCalendar fechaInicio,
-			GregorianCalendar fechaFin) throws Exception {
+			GregorianCalendar fechaFin, boolean modificable, Cliente cliente, Hotel h) throws Exception {
 		
-		Reserva r = new Reserva(nombreTipoHabitacion, fechaFin, fechaFin);
+		Reserva r = new Reserva(nombreTipoHabitacion, fechaInicio, fechaFin, modificable, cliente, h);
 		
 		reservas.put(Long.toString(r.getCodigo()),r);
 		

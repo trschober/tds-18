@@ -163,10 +163,10 @@ public class CadenaHotelera
 	}
 
 	public ReservaDTO registrarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
-			GregorianCalendar fechaFin, boolean modificablePorHuesped) throws Exception {
+			GregorianCalendar fechaFin, boolean modificablePorHuesped, Cliente cliente) throws Exception {
 		Hotel h = this.buscarHotel(nombreHotel);
 		
-		return h.registrarReserva(nombreTipoHabitacion, fechaInicio, fechaFin);
+		return h.registrarReserva(nombreTipoHabitacion, fechaInicio, fechaFin, modificablePorHuesped, cliente, h);
 	}
 
 	public Set<HotelDTO> sugerirAlternativas(String pais, String nombreTipoHabitacion, GregorianCalendar fechaInicio,

@@ -27,17 +27,18 @@ public class Reserva {
 	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	} 	
-	public Reserva(String nombreTipoHabitacion, GregorianCalendar _fechaInicio, GregorianCalendar _fechaFin)
+	public Reserva(String nombreTipoHabitacion, GregorianCalendar _fechaInicio, GregorianCalendar _fechaFin, boolean modificable, Cliente c, Hotel h)
 	{		
-		TipoHabitacion th = new TipoHabitacion(nombreTipoHabitacion);
+		this.tipoHabitacion = new TipoHabitacion(nombreTipoHabitacion);
 		this.codigo = (long)Math.random()*10000;
 		this.fechaInicio=_fechaInicio;
 		this.fechaFin= _fechaFin;
-		this.habitacion = new Habitacion(th, nombreTipoHabitacion);
-		this.estado = EstadoReserva.PENDIENTE;
+		this.modificacionPorHuesped = modificable;
+		this.habitacion = new Habitacion(this.tipoHabitacion, nombreTipoHabitacion);
+		this.estado = EstadoReserva.Pendiente;
 		this.huespedes = new ArrayList<Huesped>();
-		this.hotel = new Hotel();
-		this.cliente = new Cliente();
+		this.hotel = h;
+		this.cliente = c;
 	}	
 	
 	public Reserva()
@@ -45,7 +46,7 @@ public class Reserva {
 		this.fechaInicio= new GregorianCalendar();
 		this.fechaFin= new GregorianCalendar();
 		this.habitacion = new Habitacion(null, null);
-		this.estado = EstadoReserva.PENDIENTE;
+		this.estado = EstadoReserva.Pendiente;
 		this.codigo = (long)Math.random()*10000;
 		//this.huespedes = new ArrayList<>();
 	}
@@ -149,16 +150,16 @@ public class Reserva {
 	}
 	
 	public boolean EstaPendiente() {
-		return estado.compareTo(EstadoReserva.PENDIENTE) == 0;
+		return estado.compareTo(EstadoReserva.Pendiente) == 0;
 	}
 	public boolean EstaCancelada() {
-		return estado.compareTo(EstadoReserva.CANCELADA) == 0;
+		return estado.compareTo(EstadoReserva.Cancelada) == 0;
 	}
 	public boolean EstaNoTomada() {
-		return estado.compareTo(EstadoReserva.NO_TOMADA) == 0;
+		return estado.compareTo(EstadoReserva.NoTomada) == 0;
 	}
 	public boolean EstaTomada() {
-		return estado.compareTo(EstadoReserva.TOMADA) == 0;
+		return estado.compareTo(EstadoReserva.Tomada) == 0;
 	}
 	
 	public int CoincideTipoHabitacion(GregorianCalendar _fechaInicio,GregorianCalendar _fechaFin )

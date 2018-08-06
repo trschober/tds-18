@@ -19,7 +19,7 @@ public class HacerReservaController implements IHacerReservaController {
 	
 	private CadenaHotelera cadenaHotelera;
 	private Hotel hotel;
-
+	private Cliente cliente;
 	
 	// --------------------------------------------------------------------------------------------
 	
@@ -35,6 +35,7 @@ public class HacerReservaController implements IHacerReservaController {
 
 	@Override
 	public ClienteDTO seleccionarCliente(String rut) throws Exception {		
+		this.cliente = cadenaHotelera.buscarCliente(rut);
 		return DTO.map(cadenaHotelera.buscarCliente(rut));		
 	}
 
@@ -56,7 +57,7 @@ public class HacerReservaController implements IHacerReservaController {
 	public ReservaDTO registrarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin, boolean modificablePorHuesped) throws Exception {
 		
-		return cadenaHotelera.registrarReserva(nombreHotel, nombreTipoHabitacion, fechaInicio, fechaFin, modificablePorHuesped);
+		return cadenaHotelera.registrarReserva(nombreHotel, nombreTipoHabitacion, fechaInicio, fechaFin, modificablePorHuesped, cliente);
 
 	}
 
