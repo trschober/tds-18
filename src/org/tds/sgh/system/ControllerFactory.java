@@ -30,7 +30,7 @@ public class ControllerFactory implements IControllerFactory
 	public ICancelarReservaController createCancelarReservaController()
 	{
 		// TODO
-		return new CancelarReservaController(cadenaHotelera);
+		return new ReservaController(cadenaHotelera);
 				 
 	}
 	
