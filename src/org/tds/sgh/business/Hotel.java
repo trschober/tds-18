@@ -87,7 +87,11 @@ public class Hotel
 		return new HashSet<Reserva>(this.reservas.values());
 	}
 	
-	public boolean confirmarDisponibilidad(String nth, GregorianCalendar fi, GregorianCalendar ff  ) throws Exception {
+	public boolean confirmarDisponibilidad(
+			String nth, 
+			GregorianCalendar fi, 
+			GregorianCalendar ff  
+			) throws Exception {
 				
 		//boolean Reserva = true;
 		int capacidadPorTipHabitacion = this.calcularCapacidad(nth);

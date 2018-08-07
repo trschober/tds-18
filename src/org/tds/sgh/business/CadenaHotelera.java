@@ -164,16 +164,26 @@ public class CadenaHotelera
 		return a;
 	}
 
-	public ReservaDTO registrarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
-			GregorianCalendar fechaFin, boolean modificablePorHuesped, Cliente cliente) throws Exception {
+	public ReservaDTO registrarReserva(
+			String nombreHotel, 
+			String nombreTipoHabitacion, 
+			GregorianCalendar fechaInicio,
+			GregorianCalendar fechaFin, 
+			boolean modificablePorHuesped,
+			Cliente cliente
+			) throws Exception {
+		
 		Hotel h = this.buscarHotel(nombreHotel);
 		TipoHabitacion th = this.buscarTipoHabitacion(nombreTipoHabitacion);
 		return h.registrarReserva(th, fechaInicio, fechaFin, modificablePorHuesped, cliente, h);
 	}
 
-	public Set<HotelDTO> sugerirAlternativas(String pais, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
-			GregorianCalendar fechaFin) throws Exception {
-		
+	public Set<HotelDTO> sugerirAlternativas(
+			String pais, 
+			String nombreTipoHabitacion, 
+			GregorianCalendar fechaInicio,
+			GregorianCalendar fechaFin
+			) throws Exception {
 		
 		Set<HotelDTO> hotelesDTO = new HashSet<HotelDTO>();
 

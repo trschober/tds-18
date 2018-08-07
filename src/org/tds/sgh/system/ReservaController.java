@@ -22,6 +22,8 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	private Hotel hotel;
 	private Cliente cliente;
 	private ISistemaMensajeria sistemaMensajeria;
+	private ISistemaFacturacion sistemaFacturacion;
+	private ICalendario calendario;
 	
 	// --------------------------------------------------------------------------------------------
 	
@@ -29,6 +31,8 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	{
 		this.cadenaHotelera = cadenaHotelera;
 		sistemaMensajeria = Infrastructure.getInstance().getSistemaMensajeria();
+		sistemaFacturacion = Infrastructure.getInstance().getSistemaFacturacion();
+		calendario = Infrastructure.getInstance().getCalendario();
 
 	}
 	
@@ -61,6 +65,7 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	public ReservaDTO registrarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin, boolean modificablePorHuesped) throws Exception {
 		ReservaDTO reservaRegistrada = cadenaHotelera.registrarReserva(nombreHotel, nombreTipoHabitacion, fechaInicio, fechaFin, modificablePorHuesped, cliente);
+		
 		this.sistemaMensajeria.enviarMail(this.cliente.getMail(), "asunto", "texto");
 		
 		return reservaRegistrada;
