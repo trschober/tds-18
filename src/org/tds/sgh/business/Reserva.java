@@ -13,7 +13,7 @@ public class Reserva {
 	private long codigo ;
 	private GregorianCalendar fechaFin;
 	private GregorianCalendar fechaInicio;
-	private boolean modificacionPorHuesped;
+	private boolean modificablePorHuesped;
 	private EstadoReserva estado;
 	private Habitacion habitacion;
 	private ArrayList<Huesped> huespedes;
@@ -27,14 +27,14 @@ public class Reserva {
 	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	} 	
-	public Reserva(String nombreTipoHabitacion, GregorianCalendar _fechaInicio, GregorianCalendar _fechaFin, boolean modificable, Cliente c, Hotel h)
+	public Reserva(TipoHabitacion nombreTipoHabitacion, GregorianCalendar _fechaInicio, GregorianCalendar _fechaFin, boolean modificable, Cliente c, Hotel h)
 	{		
-		this.tipoHabitacion = new TipoHabitacion(nombreTipoHabitacion);
+		this.setTipoHabitacion(nombreTipoHabitacion);
 		this.codigo = (long)Math.random()*10000;
 		this.fechaInicio=_fechaInicio;
 		this.fechaFin= _fechaFin;
-		this.modificacionPorHuesped = modificable;
-		this.habitacion = new Habitacion(this.tipoHabitacion, nombreTipoHabitacion);
+		this.modificablePorHuesped = modificable;
+		this.habitacion = null; //new Habitacion(this.tipoHabitacion, nombreTipoHabitacion);
 		this.estado = EstadoReserva.Pendiente;
 		this.huespedes = new ArrayList<Huesped>();
 		this.hotel = h;
@@ -59,7 +59,7 @@ public class Reserva {
 		
 		if (habitacion == null)
 		{
-			throw new Exception("No existe una habitacion con el codigo indicado.");
+			throw new Exception("No existe una habitacion asociada a esta reserva.");
 		}
 		
 		return this.habitacion;
@@ -76,17 +76,6 @@ public class Reserva {
 		
 		return huesped;
 	}
-	//public Hotel getHotel(Integer CodigoHotel) throws Exception
-	//{
-		//Hotel hotel = this.hotel.get(CodigoHotel);
-		
-		//if (hotel == null)
-		//{
-			//throw new Exception("No existe un hotel con el codigo indicado.");
-		//}
-		
-		//return hotel;
-	//}
 	
 	public GregorianCalendar getFechaFin() {
 		return fechaFin;
@@ -100,11 +89,11 @@ public class Reserva {
 	public void setFechaInicio(GregorianCalendar fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
-	public Boolean getModificacionPorHuesped() {
-		return modificacionPorHuesped;
+	public Boolean getModificablePorHuesped() {
+		return modificablePorHuesped;
 	}
-	public void setModificacionPorHuesped(Boolean modificacionPorHuesped) {
-		this.modificacionPorHuesped = modificacionPorHuesped;
+	public void setModificablePorHuesped(Boolean modificacionPorHuesped) {
+		this.modificablePorHuesped = modificacionPorHuesped;
 	}
 	public EstadoReserva getEstado() {
 		return estado;
@@ -113,15 +102,17 @@ public class Reserva {
 		this.estado = estado;
 	}
 	
-	public void setHabitaciones(Habitacion habitacion) {
+	public void setHabitacion(Habitacion habitacion) {
 		this.habitacion = habitacion;
 	}
 	public List<Huesped> getHuespedes() {
 		return huespedes;
 	}
-	//public void setHuespedes(List<Huesped> huespedes) {
-	//	this.huespedes = huespedes;
-	//}
+	
+/*	public void addHuespedes(List<Huesped> huespedes) {
+		this.huespedes.add(huespedes);
+	}
+*/	
 	public Hotel getHotel() {
 		return hotel;
 	}
@@ -130,6 +121,9 @@ public class Reserva {
 	}
 	public Cliente getCliente() {
 		return cliente;
+	}
+	public String getRutCliente() {
+		return cliente.getRut();
 	}
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
@@ -187,6 +181,20 @@ public class Reserva {
 			//}
 		//}		
 		return Coincide;
+	}
+	public String getTipoHabitacion() {
+		return tipoHabitacion.getNombre();
+	}
+	public String getNombreHabitacion() {
+		if (habitacion == null) {
+			return null;
+		}
+		else {
+		return habitacion.getNombre();
+		}
+	}
+	public void setTipoHabitacion(TipoHabitacion tipoHabitacion) {
+		this.tipoHabitacion = tipoHabitacion;
 	}
 
 	

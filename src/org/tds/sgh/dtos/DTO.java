@@ -50,7 +50,10 @@ public class DTO
 	
 	public HabitacionDTO map(Hotel hotel, Habitacion habitacion)
 	{
-		return new HabitacionDTO(hotel.getNombre(), habitacion.getTipoHabitacion().getNombre(), habitacion.getNombre());
+		return new HabitacionDTO(
+				hotel.getNombre(),
+				habitacion.getTipoHabitacion(),
+				habitacion.getNombre());
 	}
 	
 	public TipoHabitacionDTO map(TipoHabitacion tipoHabitation)
@@ -60,20 +63,32 @@ public class DTO
 	
 	public HuespedDTO map( Huesped huesped)
 	{
-		return new HuespedDTO(huesped.GetNombre(), huesped.GetDocumento());
+		return new HuespedDTO(
+				huesped.GetNombre(),
+				huesped.GetDocumento());
 	}	
 	public ReservaDTO map(Reserva reserva) throws Exception
 	{
-		HuespedDTO[] hp = new HuespedDTO[reserva.getHuespedes().size()];
+		//HuespedDTO[] hp = new HuespedDTO[reserva.getHuespedes().size()];
 		
 		Set<HuespedDTO> x = this.mapHuesped(reserva.getHuespedes().stream().collect(Collectors.toSet()));
 		HuespedDTO[] y = x.toArray(new HuespedDTO[0]);
-		return new ReservaDTO(reserva.getCodigo(), reserva.getCliente().getRut(), reserva.getHotel().getNombre(),reserva.getHabitacion().getTipoHabitacion().getNombre() , reserva.getFechaInicio(), reserva.getFechaFin(), reserva.getModificacionPorHuesped(),reserva.getEstado().toString(),reserva.getHabitacion().getNombre() , y);
+		return new ReservaDTO(
+				reserva.getCodigo(),
+				reserva.getRutCliente(),
+				reserva.getHotel().getNombre(),
+				reserva.getTipoHabitacion(),
+				reserva.getFechaInicio(),
+				reserva.getFechaFin(), 
+				reserva.getModificablePorHuesped(),
+				reserva.getEstado().toString(),
+				reserva.getNombreHabitacion(),
+				y);
 							
 	}	
 	
 	
-	public Set<ReservaDTO> mapResevas(Set<Reserva> reservas) throws Exception
+	public Set<ReservaDTO> mapReservas(Set<Reserva> reservas) throws Exception
 	{
 		Set<ReservaDTO> reservasDTO = new HashSet<ReservaDTO>();
 		

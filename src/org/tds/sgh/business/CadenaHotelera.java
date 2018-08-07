@@ -158,15 +158,17 @@ public class CadenaHotelera
 	public boolean confirmarDisponibilidad(String nombreHotel, String nombreTipoHabitacion,
 			GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
 		Hotel h = this.buscarHotel(nombreHotel);
-		boolean a = h.confirmarDisponibilidad(nombreTipoHabitacion, fechaInicio, fechaFin);
+		TipoHabitacion th = this.buscarTipoHabitacion(nombreTipoHabitacion);
+		String nth = th.getNombre();
+		boolean a = h.confirmarDisponibilidad(nth, fechaInicio, fechaFin);
 		return a;
 	}
 
 	public ReservaDTO registrarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin, boolean modificablePorHuesped, Cliente cliente) throws Exception {
 		Hotel h = this.buscarHotel(nombreHotel);
-		
-		return h.registrarReserva(nombreTipoHabitacion, fechaInicio, fechaFin, modificablePorHuesped, cliente, h);
+		TipoHabitacion th = this.buscarTipoHabitacion(nombreTipoHabitacion);
+		return h.registrarReserva(th, fechaInicio, fechaFin, modificablePorHuesped, cliente, h);
 	}
 
 	public Set<HotelDTO> sugerirAlternativas(String pais, String nombreTipoHabitacion, GregorianCalendar fechaInicio,

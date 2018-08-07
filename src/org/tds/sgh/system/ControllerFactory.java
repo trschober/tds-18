@@ -37,7 +37,7 @@ public class ControllerFactory implements IControllerFactory
 	@Override
 	public IHacerReservaController createHacerReservaController()
 	{
-		return new HacerReservaController(this.cadenaHotelera);
+		return new ReservaController(this.cadenaHotelera);
 	}
 	
 	@Override
@@ -50,7 +50,7 @@ public class ControllerFactory implements IControllerFactory
 	@Override
 	public ITomarReservaController createTomarReservaController()
 	{
-		return new TomarReservaController(this.cadenaHotelera);
+		return new ReservaController(this.cadenaHotelera);
 
 	}
 }

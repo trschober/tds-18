@@ -87,7 +87,7 @@ public class Hotel
 		return new HashSet<Reserva>(this.reservas.values());
 	}
 	
-	public boolean confirmarDisponibilidad( String nth, GregorianCalendar fi, GregorianCalendar ff  ) throws Exception {
+	public boolean confirmarDisponibilidad(String nth, GregorianCalendar fi, GregorianCalendar ff  ) throws Exception {
 				
 		//boolean Reserva = true;
 		int capacidadPorTipHabitacion = this.calcularCapacidad(nth);
@@ -104,7 +104,7 @@ public class Hotel
 		
 		for(Reserva r : this.reservas.values()) {
 			
-			 if ( r.ToparFecha(fi, ff) && r.getHabitacion().getTipoHabitacion().getNombre().equals(nth) && r.EstaPendiente() ) {
+			 if ( r.ToparFecha(fi, ff) && r.getTipoHabitacion().equals(nth) && r.EstaPendiente() ) {
 				 conflicto++;
 			 }
 		}
@@ -135,7 +135,7 @@ public class Hotel
 		for (Habitacion habitacion : this.habitaciones.values())
 		{
 			//TODO revisar si se compara nombre en lugar de c�digo de habitaci�n
-			if (habitacion.getTipoHabitacion().getNombre().equals(nth))
+			if (habitacion.getTipoHabitacion().equals(nth))
 			{
 				capacidad++;
 			}
@@ -162,10 +162,16 @@ public class Hotel
 		
 	}
 	
-	public ReservaDTO registrarReserva(String nombreTipoHabitacion, GregorianCalendar fechaInicio,
+	public ReservaDTO registrarReserva(TipoHabitacion nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin, boolean modificable, Cliente cliente, Hotel h) throws Exception {
 		
-		Reserva r = new Reserva(nombreTipoHabitacion, fechaInicio, fechaFin, modificable, cliente, h);
+		Reserva r = new Reserva(
+				nombreTipoHabitacion,
+				fechaInicio,
+				fechaFin,
+				modificable,
+				cliente,
+				h);
 		
 		reservas.put(Long.toString(r.getCodigo()),r);
 		

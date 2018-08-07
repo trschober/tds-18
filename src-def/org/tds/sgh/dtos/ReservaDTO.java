@@ -33,7 +33,17 @@ public class ReservaDTO
 	
 	// --------------------------------------------------------------------------------------------
 	
-	public ReservaDTO(long codigo, String rutCliente, String hotel, String tipoHabitacion, GregorianCalendar fechaInicio, GregorianCalendar fechaFin, boolean modificablePorHuesped, String estado, String habitacion, HuespedDTO... huespedes)
+	public ReservaDTO(
+			long codigo, 
+			String rutCliente, 
+			String hotel, 
+			String tipoHabitacion,
+			GregorianCalendar fechaInicio,
+			GregorianCalendar fechaFin,
+			boolean modificablePorHuesped,
+			String estado,
+			String habitacion,
+			HuespedDTO... huespedes)
 	{
 		this.codigo = codigo;
 		

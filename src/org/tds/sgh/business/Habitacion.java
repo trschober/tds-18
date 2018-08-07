@@ -28,8 +28,8 @@ public class Habitacion
 		this.tipoHabitacion = tipoHabitacion;
 	}
 
-	public TipoHabitacion getTipoHabitacion()
+	public String getTipoHabitacion()
 	{
-		return this.tipoHabitacion;
+		return this.tipoHabitacion.getNombre();
 	}
 }
