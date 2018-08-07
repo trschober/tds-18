@@ -188,8 +188,12 @@ public class CadenaHotelera
 		Set<HotelDTO> hotelesDTO = new HashSet<HotelDTO>();
 
 		for (Hotel hotel : hoteles.values()) {
-			if (hotel.confirmarDisponibilidad(nombreTipoHabitacion,
-					fechaInicio, fechaFin)) {
+			if (hotel.confirmarDisponibilidad(
+					nombreTipoHabitacion,
+					fechaInicio, 
+					fechaFin) 
+				&& hotel.getPais().equals(pais)) 
+			{
 				hotelesDTO.add(new HotelDTO(hotel.getNombre(), hotel.getPais()));
 			}
 		}

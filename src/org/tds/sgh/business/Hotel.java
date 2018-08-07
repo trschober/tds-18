@@ -102,14 +102,22 @@ public class Hotel
 	}	
 	
 	//TODO Mejorar algoritmo para calcular conflictos de fechas
-	private int calcularMaxReservasConConflictos(String nth, GregorianCalendar fi, GregorianCalendar ff) throws Exception {
+	private int calcularMaxReservasConConflictos(
+			String nth, 
+			GregorianCalendar fi, 
+			GregorianCalendar ff
+			) throws Exception {
 		
 		int conflicto = 0;
 		
 		for(Reserva r : this.reservas.values()) {
 			
-			 if ( r.ToparFecha(fi, ff) && r.getTipoHabitacion().equals(nth) && r.EstaPendiente() ) {
-				 conflicto++;
+			// if ( r.ToparFecha(fi, ff) && r.getTipoHabitacion().equals(nth) && r.EstaPendiente() ) {
+			if (r.getTipoHabitacion().equals(nth)
+					&& fi.compareTo(r.getFechaFin()) < 0
+					&& ff.compareTo(r.getFechaInicio()) > 0
+					&& r.EstaPendiente()) {
+				conflicto++;
 			 }
 		}
 		
@@ -123,7 +131,7 @@ public class Hotel
 		
 		for (Reserva reserva : this.reservas.values())
 		{
-			if (reserva.getEstado() == EstadoReserva.Pendiente)
+			if (reserva.EstaPendiente())
 			{
 				reservasPendientes.add(reserva);
 			}
