@@ -50,8 +50,11 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	@Override
 	public ClienteDTO registrarCliente(String rut, String nombre, String direccion, String telefono, String mail)
 			throws Exception {
+		ClienteDTO clienteRegistrado = DTO.map(cadenaHotelera.agregarCliente(rut, nombre, direccion, telefono, mail));
+
+		this.cliente = cadenaHotelera.buscarCliente(rut);
 		
-		return DTO.map(cadenaHotelera.agregarCliente(rut, nombre, direccion, telefono, mail));
+		return clienteRegistrado;
 	}
 
 	@Override
