@@ -10,6 +10,7 @@ import org.tds.sgh.dtos.ClienteDTO;
 import org.tds.sgh.dtos.DTO;
 import org.tds.sgh.dtos.HotelDTO;
 import org.tds.sgh.dtos.ReservaDTO;
+import org.tds.sgh.infrastructure.*;
 
 public class ReservaController implements IHacerReservaController, ITomarReservaController, ICancelarReservaController {
 
@@ -20,12 +21,15 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	private CadenaHotelera cadenaHotelera;
 	private Hotel hotel;
 	private Cliente cliente;
+	private ISistemaMensajeria sistemaMensajeria;
 	
 	// --------------------------------------------------------------------------------------------
 	
 	public ReservaController(CadenaHotelera cadenaHotelera)
 	{
 		this.cadenaHotelera = cadenaHotelera;
+		sistemaMensajeria = Infrastructure.getInstance().getSistemaMensajeria();
+
 	}
 	
 	@Override
@@ -56,9 +60,10 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	@Override
 	public ReservaDTO registrarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin, boolean modificablePorHuesped) throws Exception {
+		ReservaDTO reservaRegistrada = cadenaHotelera.registrarReserva(nombreHotel, nombreTipoHabitacion, fechaInicio, fechaFin, modificablePorHuesped, cliente);
+		this.sistemaMensajeria.enviarMail(this.cliente.getMail(), "asunto", "texto");
 		
-		return cadenaHotelera.registrarReserva(nombreHotel, nombreTipoHabitacion, fechaInicio, fechaFin, modificablePorHuesped, cliente);
-
+		return reservaRegistrada;
 	}
 
 	@Override
