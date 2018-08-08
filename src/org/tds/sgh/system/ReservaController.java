@@ -154,8 +154,9 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 
 	@Override
 	public ReservaDTO cancelarReservaDelCliente() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		this.reserva.setEstado(EstadoReserva.Cancelada);
+		this.sistemaMensajeria.enviarMail(this.cliente.getMail(), "cancela reserva", "mensaje");
+		return DTO.map(this.reserva);
 	}
 
 	@Override
