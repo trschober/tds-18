@@ -1,6 +1,8 @@
 package org.tds.sgh.system;
 
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.tds.sgh.business.CadenaHotelera;
@@ -101,8 +103,13 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 
 	@Override
 	public Set<ReservaDTO> buscarReservasDelCliente() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Set<ReservaDTO> reservas = new HashSet<ReservaDTO>();
+		
+		for(Hotel h : cadenaHotelera.listarHoteles()) {
+			reservas.addAll(DTO.mapReservas( h.obtenerReservasCliente(this.cliente)));
+		}
+		
+		return reservas;
 	}
 
 	@Override
