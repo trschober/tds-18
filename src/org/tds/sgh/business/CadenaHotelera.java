@@ -189,6 +189,10 @@ public class CadenaHotelera
 			GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin
 			) throws Exception {
+		if (this.tiposHabitacion.get(nombreTipoHabitacion) == null)
+			{
+				throw new Exception("tipo habitacion inexistente");
+			}
 		
 		Set<HotelDTO> hotelesDTO = new HashSet<HotelDTO>();
 
