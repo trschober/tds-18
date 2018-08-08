@@ -164,7 +164,8 @@ public class Hotel
 		for (Reserva r : this.reservas.values())
 		{
 			
-			if (r.getCliente()==C)
+			if (r.getCliente()==C
+				&& r.EstaPendiente())
 			{
 				Obj.add(r);
 			}
