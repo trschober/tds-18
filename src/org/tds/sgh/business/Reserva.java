@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 
@@ -30,7 +31,10 @@ public class Reserva {
 	public Reserva(TipoHabitacion nombreTipoHabitacion, GregorianCalendar _fechaInicio, GregorianCalendar _fechaFin, boolean modificable, Cliente c, Hotel h)
 	{		
 		this.setTipoHabitacion(nombreTipoHabitacion);
-		this.codigo = (long)Math.random()*10000;
+		
+		Random rand = new Random();
+		
+		this.codigo = (long)rand.nextInt(100000);
 		this.fechaInicio=_fechaInicio;
 		this.fechaFin= _fechaFin;
 		this.modificablePorHuesped = modificable;

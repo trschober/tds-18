@@ -174,11 +174,11 @@ public class Hotel
 		
 	}
 	
-	public Reserva registrarReserva(TipoHabitacion nombreTipoHabitacion, GregorianCalendar fechaInicio,
+	public Reserva registrarReserva(TipoHabitacion tipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin, boolean modificable, Cliente cliente, Hotel h) throws Exception {
 		
 		Reserva r = new Reserva(
-				nombreTipoHabitacion,
+				tipoHabitacion,
 				fechaInicio,
 				fechaFin,
 				modificable,
