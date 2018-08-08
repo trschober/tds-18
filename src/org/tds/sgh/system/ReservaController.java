@@ -115,8 +115,9 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	@Override
 	public ReservaDTO modificarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin, boolean modificablePorHuesped) throws Exception {
-
+		this.reserva.getHotel().eliminarReserva(this.reserva);
 		this.reserva.setHotel(cadenaHotelera.buscarHotel(nombreHotel));
+		this.reserva.getHotel().registrarReserva(this.reserva);
 		this.reserva.setTipoHabitacion(this.cadenaHotelera.buscarTipoHabitacion(nombreTipoHabitacion));
 		this.reserva.setFechaInicio(fechaInicio);
 		this.reserva.setFechaFin(fechaFin);

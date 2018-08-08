@@ -190,6 +190,25 @@ public class Hotel
 		
 		return r;
 	}
+	public Reserva registrarReserva(Reserva r) {
+		
+		reservas.put(Long.toString(r.getCodigo()),r);
+		
+		return r;
+	}
+	
+	public void eliminarReserva(Reserva reserva) {
+		
+		for (Reserva r : this.reservas.values())
+		{
+			
+			if (r.getCodigo() == reserva.getCodigo())
+			{
+				reservas.remove(Long.toString(reserva.getCodigo()));
+			}
+		}
+		
+	}
 
 	public Habitacion buscarHabitacionLibre(String tipoHabitacion, 
 			GregorianCalendar fi, 
