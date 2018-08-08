@@ -11,6 +11,8 @@ import java.util.Set;
 import org.tds.sgh.dtos.DTO;
 import org.tds.sgh.dtos.ReservaDTO;
 import org.tds.sgh.dtos.TipoHabitacionDTO;
+import org.tds.sgh.infrastructure.ICalendario;
+import org.tds.sgh.infrastructure.Infrastructure;
 import org.tds.sgh.infrastructure.NotImplementedException;
 
 
@@ -22,6 +24,7 @@ public class Hotel
 	private Map<String, Reserva> reservas;	
 	private String nombre;	
 	private String pais;
+	private ICalendario calendario;
 	private final DTO DTO = org.tds.sgh.dtos.DTO.getInstance();
 	
 	// --------------------------------------------------------------------------------------------
@@ -31,6 +34,8 @@ public class Hotel
 		this.reservas =  new HashMap<String, Reserva>();
 		this.nombre = "";		
 		this.pais = "";
+		this.calendario = Infrastructure.getInstance().getCalendario();
+
 	}
 	
 	public Hotel(String nombre, String pais)
@@ -39,6 +44,8 @@ public class Hotel
 		this.reservas =  new HashMap<String, Reserva>();
 		this.nombre = nombre;		
 		this.pais = pais;
+		this.calendario = Infrastructure.getInstance().getCalendario();
+
 	}
 	
 	// --------------------------------------------------------------------------------------------
@@ -165,7 +172,8 @@ public class Hotel
 		{
 			
 			if (r.getCliente()==C
-				&& r.EstaPendiente())
+				&& r.EstaPendiente()
+				&& !calendario.esPasada(r.getFechaInicio()))
 			{
 				Obj.add(r);
 			}

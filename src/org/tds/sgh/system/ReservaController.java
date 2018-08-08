@@ -70,7 +70,11 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	@Override
 	public boolean confirmarDisponibilidad(String nombreHotel, String nombreTipoHabitacion,
 			GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
-
+		if (this.calendario.esPasada(fechaInicio)
+			|| this.calendario.esPosterior(fechaInicio, fechaFin))
+		{
+			throw new Exception("Fechas incorrectas");
+		}
 		return cadenaHotelera.confirmarDisponibilidad(nombreHotel, nombreTipoHabitacion, fechaInicio, fechaFin);
 	}
 
@@ -125,6 +129,11 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 
 	@Override
 	public Set<ReservaDTO> buscarReservasDelCliente() throws Exception {
+		
+		if (this.cliente == null)
+		{
+			throw new Exception("No hay un cliente seleccionado");
+		}
 		Set<ReservaDTO> reservas = new HashSet<ReservaDTO>();
 		
 		for(Hotel h : cadenaHotelera.listarHoteles()) {
@@ -137,6 +146,12 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	@Override
 	public ReservaDTO modificarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin, boolean modificablePorHuesped) throws Exception {
+		
+		if (this.reserva == null)
+		{
+			throw new Exception("No hay una reserva seleccionado");
+		}
+		
 		this.reserva.getHotel().eliminarReserva(this.reserva);
 		this.reserva.setHotel(cadenaHotelera.buscarHotel(nombreHotel));
 		this.reserva.getHotel().registrarReserva(this.reserva);
@@ -152,12 +167,22 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 
 	@Override
 	public Set<ReservaDTO> buscarReservasPendientes(String nombreHotel) throws Exception {
+		if (this.hotel == null)
+		{
+			throw new Exception("No hay un hotel seleccionado");
+		}
+		
 		this.hotel = cadenaHotelera.buscarHotel(nombreHotel);
 		return DTO.mapReservas(cadenaHotelera.buscarReservasPendientes(nombreHotel));
 	}
 
 	@Override
 	public ReservaDTO seleccionarReserva(long codigoReserva) throws Exception {
+		if (this.hotel == null)
+		{
+			throw new Exception("No hay un hotel seleccionado");
+		}
+		
 		String codigo = Long.toString(codigoReserva);
 		this.reserva = hotel.seleccionarPorCodigoReserva(codigo);
 		return DTO.map(this.reserva);
@@ -165,12 +190,22 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 
 	@Override
 	public ReservaDTO registrarHuesped(String nombre, String documento) throws Exception {
+		if (this.reserva == null)
+		{
+			throw new Exception("No hay una reserva seleccionada");
+		}
+		
 		this.reserva.addHuespedes(new Huesped(nombre, documento));
 		return DTO.map(this.reserva);
 	}
 
 	@Override
 	public ReservaDTO tomarReserva() throws Exception {
+		
+		if (this.reserva == null)
+		{
+			throw new Exception("No hay una reserva seleccionada");
+		}
 		this.reserva.setEstado(EstadoReserva.Tomada);
 		this.reserva.setHabitacion(
 				this.hotel.buscarHabitacionLibre(
@@ -185,6 +220,10 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 
 	@Override
 	public ReservaDTO cancelarReservaDelCliente() throws Exception {
+		if (this.cliente == null)
+		{
+			throw new Exception("No hay un cliente seleccionado");
+		}
 		this.reserva.setEstado(EstadoReserva.Cancelada);
 		this.sistemaMensajeria.enviarMail(this.cliente.getMail(), "cancela reserva", "mensaje");
 		return DTO.map(this.reserva);
