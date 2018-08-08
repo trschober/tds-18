@@ -47,12 +47,21 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	}
 	
 	@Override
-	public Set<ClienteDTO> buscarCliente(String patronNombreCliente) {
+	public Set<ClienteDTO> buscarCliente(String patronNombreCliente){
+		if (patronNombreCliente == null)
+			{
+				return null;
+			}
 		return DTO.mapClientes(cadenaHotelera.buscarClientes(patronNombreCliente));
 	}
 
 	@Override
 	public ClienteDTO seleccionarCliente(String rut) throws Exception {		
+		if (rut == null)
+		{
+			throw new Exception("cliente incorrecto");
+		}
+		
 		this.cliente = cadenaHotelera.buscarCliente(rut);
 		return DTO.map(cadenaHotelera.buscarCliente(rut));		
 	}
@@ -60,6 +69,7 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	@Override
 	public ClienteDTO registrarCliente(String rut, String nombre, String direccion, String telefono, String mail)
 			throws Exception {
+		
 		ClienteDTO clienteRegistrado = DTO.map(cadenaHotelera.agregarCliente(rut, nombre, direccion, telefono, mail));
 
 		this.cliente = cadenaHotelera.buscarCliente(rut);
@@ -121,9 +131,16 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	
 
 	@Override
-	public Set<HotelDTO> sugerirAlternativas(String pais, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
+	public Set<HotelDTO> sugerirAlternativas(
+			String pais, 
+			String nombreTipoHabitacion, 
+			GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin) throws Exception {
-
+		if (this.calendario.esPasada(fechaInicio)
+				|| this.calendario.esPosterior(fechaInicio, fechaFin))
+			{
+				throw new Exception("Fechas incorrectas");
+			}
 		return cadenaHotelera.sugerirAlternativas(pais, nombreTipoHabitacion, fechaInicio, fechaFin);
 	}
 
@@ -178,13 +195,21 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 
 	@Override
 	public ReservaDTO seleccionarReserva(long codigoReserva) throws Exception {
-		if (this.hotel == null)
+		if (this.hotel == null
+			|| this.cliente == null)
 		{
-			throw new Exception("No hay un hotel seleccionado");
+			throw new Exception("No hay un hotel o cliente seleccionado");
 		}
 		
 		String codigo = Long.toString(codigoReserva);
 		this.reserva = hotel.seleccionarPorCodigoReserva(codigo);
+		
+		if (this.reserva.getCliente().getRut()
+				!= this.cliente.getRut())
+			{
+				throw new Exception("cliente incorecto");
+			}
+		
 		return DTO.map(this.reserva);
 	}
 

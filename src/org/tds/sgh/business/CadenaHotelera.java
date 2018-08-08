@@ -159,6 +159,11 @@ public class CadenaHotelera
 			GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
 		Hotel h = this.buscarHotel(nombreHotel);
 		TipoHabitacion th = this.buscarTipoHabitacion(nombreTipoHabitacion);
+
+		if (th == null)
+			{
+				throw new Exception("habitacion inexistente");
+			}
 		String nth = th.getNombre();
 		boolean a = h.confirmarDisponibilidad(nth, fechaInicio, fechaFin);
 		return a;
