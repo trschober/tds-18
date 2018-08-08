@@ -34,29 +34,17 @@ public class Reserva {
 		this.fechaInicio=_fechaInicio;
 		this.fechaFin= _fechaFin;
 		this.modificablePorHuesped = modificable;
-		this.habitacion = null; //new Habitacion(this.tipoHabitacion, nombreTipoHabitacion);
+		this.habitacion = null;
 		this.estado = EstadoReserva.Pendiente;
 		this.huespedes = new ArrayList<Huesped>();
 		this.hotel = h;
 		this.cliente = c;
 	}	
 	
-	public Reserva()
-	{
-		this.fechaInicio= new GregorianCalendar();
-		this.fechaFin= new GregorianCalendar();
-		this.habitacion = new Habitacion(null, null);
-		this.estado = EstadoReserva.Pendiente;
-		this.codigo = (long)Math.random()*10000;
-		//this.huespedes = new ArrayList<>();
-	}
-	
 	
 	public Habitacion getHabitacion() throws Exception
 	{
 
-		//Habitacion habitacion = null; //this.habitacion.getHabitacion(CodigoHabitacion);
-		
 		if (habitacion == null)
 		{
 			throw new Exception("No existe una habitacion asociada a esta reserva.");
@@ -109,10 +97,10 @@ public class Reserva {
 		return huespedes;
 	}
 	
-/*	public void addHuespedes(List<Huesped> huespedes) {
-		this.huespedes.add(huespedes);
+	public void addHuespedes(Huesped huesped) {
+		this.huespedes.add(huesped);
 	}
-*/	
+	
 	public Hotel getHotel() {
 		return hotel;
 	}
@@ -195,6 +183,9 @@ public class Reserva {
 	}
 	public void setTipoHabitacion(TipoHabitacion tipoHabitacion) {
 		this.tipoHabitacion = tipoHabitacion;
+	}
+	public String getNombreHotel() {
+		return this.hotel.getNombre();
 	}
 
 	

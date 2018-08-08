@@ -211,4 +211,9 @@ public class CadenaHotelera
 		
 		return Obj;
 	}
+
+	public Set<Reserva> buscarReservasPendientes(String nombreHotel) throws Exception {
+		
+		return this.buscarHotel(nombreHotel).buscarReservasPendientes();
+	}
 }

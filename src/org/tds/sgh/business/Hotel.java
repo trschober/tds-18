@@ -190,4 +190,34 @@ public class Hotel
 		
 		return DTO.map(r);
 	}
+
+	public Habitacion buscarHabitacionLibre(String tipoHabitacion, 
+			GregorianCalendar fi, 
+			GregorianCalendar ff) {
+		
+		Set<Reserva> resUsadas = new HashSet<Reserva>();
+		
+		for(Reserva r : this.reservas.values()) {
+			
+			if (r.getTipoHabitacion().equals(tipoHabitacion)
+					&& fi.compareTo(r.getFechaFin()) < 0
+					&& ff.compareTo(r.getFechaInicio()) > 0
+					&& r.EstaTomada()) {
+				resUsadas.add(r);
+			 }
+		}
+		
+		for (Habitacion habitacion : this.habitaciones.values())
+		{
+			if (habitacion.getTipoHabitacion().equals(tipoHabitacion))
+			{
+				for (Reserva reserva : resUsadas) {
+					if (!habitacion.getNombre().equals(reserva.getNombreHabitacion())) {
+						return habitacion;
+					}
+				}
+			}
+		}
+		return null;
+	}
 }

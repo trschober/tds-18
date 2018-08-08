@@ -14,13 +14,17 @@ public class Huesped {
 	public Huesped(String codigo)
 	{
 			
-		//TODO: con el código obtenemos un nuevo huesped
+		//TODO: con el cï¿½digo obtenemos un nuevo huesped
 		
 		this.nombre = "";		
-		this.codigo = codigo;
+		this.setCodigo(codigo);
 		this.documento = "";
 	}
-	
+	public Huesped(String nombre, String documento)
+	{		
+		this.nombre = nombre;
+		this.documento = documento;
+	}
 	public String GetNombre()
 	{				
 		return this.nombre;
@@ -29,5 +33,11 @@ public class Huesped {
 	public String GetDocumento()
 	{				
 		return this.documento;
+	}
+	public String getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 }

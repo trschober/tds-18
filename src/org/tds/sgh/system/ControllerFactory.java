@@ -10,11 +10,14 @@ public class ControllerFactory implements IControllerFactory
 	
 	private CadenaHotelera cadenaHotelera;
 	
+	private ReservaController reservaController;
+	
 	// --------------------------------------------------------------------------------------------
 	
 	public ControllerFactory(CadenaHotelera cadenaHotelera)
 	{
 		this.cadenaHotelera = cadenaHotelera;
+		reservaController = new ReservaController(cadenaHotelera);
 	}
 	
 	// --------------------------------------------------------------------------------------------
@@ -23,21 +26,21 @@ public class ControllerFactory implements IControllerFactory
 	@Override
 	public ICadenaController createCadenaController()
 	{
-		return new CadenaController(this.cadenaHotelera);
+		return reservaController;
 	}
 	
 	@Override
 	public ICancelarReservaController createCancelarReservaController()
 	{
 		// TODO
-		return new ReservaController(cadenaHotelera);
+		return reservaController;
 				 
 	}
 	
 	@Override
 	public IHacerReservaController createHacerReservaController()
 	{
-		return new ReservaController(this.cadenaHotelera);
+		return reservaController;
 	}
 	
 	@Override
@@ -50,7 +53,7 @@ public class ControllerFactory implements IControllerFactory
 	@Override
 	public ITomarReservaController createTomarReservaController()
 	{
-		return new ReservaController(this.cadenaHotelera);
+		return reservaController;
 
 	}
 }
