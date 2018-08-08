@@ -73,13 +73,23 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	}
 
 	@Override
-	public ReservaDTO registrarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
-			GregorianCalendar fechaFin, boolean modificablePorHuesped) throws Exception {
-		ReservaDTO reservaRegistrada = cadenaHotelera.registrarReserva(nombreHotel, nombreTipoHabitacion, fechaInicio, fechaFin, modificablePorHuesped, cliente);
-		
+	public ReservaDTO registrarReserva(String nombreHotel, 
+			String nombreTipoHabitacion, 
+			GregorianCalendar fechaInicio,
+			GregorianCalendar fechaFin, 
+			boolean modificablePorHuesped
+			) throws Exception {
+		this.reserva = cadenaHotelera.registrarReserva(
+				nombreHotel, 
+				nombreTipoHabitacion, 
+				fechaInicio, 
+				fechaFin, 
+				modificablePorHuesped, 
+				cliente);
+		this.hotel = cadenaHotelera.buscarHotel(nombreHotel);
 		this.sistemaMensajeria.enviarMail(this.cliente.getMail(), "asunto", "texto");
 		
-		return reservaRegistrada;
+		return DTO.map(this.reserva);
 	}
 
 	@Override

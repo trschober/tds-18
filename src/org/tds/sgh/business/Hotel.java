@@ -174,7 +174,7 @@ public class Hotel
 		
 	}
 	
-	public ReservaDTO registrarReserva(TipoHabitacion nombreTipoHabitacion, GregorianCalendar fechaInicio,
+	public Reserva registrarReserva(TipoHabitacion nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin, boolean modificable, Cliente cliente, Hotel h) throws Exception {
 		
 		Reserva r = new Reserva(
@@ -188,7 +188,7 @@ public class Hotel
 		reservas.put(Long.toString(r.getCodigo()),r);
 		
 		
-		return DTO.map(r);
+		return r;
 	}
 
 	public Habitacion buscarHabitacionLibre(String tipoHabitacion, 

@@ -164,7 +164,7 @@ public class CadenaHotelera
 		return a;
 	}
 
-	public ReservaDTO registrarReserva(
+	public Reserva registrarReserva(
 			String nombreHotel, 
 			String nombreTipoHabitacion, 
 			GregorianCalendar fechaInicio,
