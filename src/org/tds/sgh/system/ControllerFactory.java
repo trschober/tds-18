@@ -32,9 +32,7 @@ public class ControllerFactory implements IControllerFactory
 	@Override
 	public ICancelarReservaController createCancelarReservaController()
 	{
-		// TODO
 		return reservaController;
-				 
 	}
 	
 	@Override
@@ -46,8 +44,7 @@ public class ControllerFactory implements IControllerFactory
 	@Override
 	public IModificarReservaController createModificarReservaController()
 	{
-		// TODO
-		throw new NotImplementedException();
+		return reservaController;
 	}
 	
 	@Override

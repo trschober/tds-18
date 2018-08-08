@@ -21,7 +21,7 @@ import org.tds.sgh.dtos.ReservaDTO;
 import org.tds.sgh.dtos.TipoHabitacionDTO;
 import org.tds.sgh.infrastructure.*;
 
-public class ReservaController implements IHacerReservaController, ITomarReservaController, ICancelarReservaController, ICadenaController {
+public class ReservaController implements IHacerReservaController, ITomarReservaController, ICancelarReservaController, IModificarReservaController, ICadenaController {
 
 	private final DTO DTO = org.tds.sgh.dtos.DTO.getInstance();
 	
@@ -115,8 +115,16 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	@Override
 	public ReservaDTO modificarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin, boolean modificablePorHuesped) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+
+		this.reserva.setHotel(cadenaHotelera.buscarHotel(nombreHotel));
+		this.reserva.setTipoHabitacion(this.cadenaHotelera.buscarTipoHabitacion(nombreTipoHabitacion));
+		this.reserva.setFechaInicio(fechaInicio);
+		this.reserva.setFechaFin(fechaFin);
+		this.reserva.setModificablePorHuesped(modificablePorHuesped);
+		
+		this.sistemaMensajeria.enviarMail(this.reserva.getCliente().getMail(), "Modifica Reserva", "Mensaje");
+		
+		return DTO.map(reserva);
 	}
 
 	@Override
