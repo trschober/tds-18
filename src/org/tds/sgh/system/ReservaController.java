@@ -48,10 +48,7 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	
 	@Override
 	public Set<ClienteDTO> buscarCliente(String patronNombreCliente){
-		if (patronNombreCliente == null)
-			{
-				return null;
-			}
+	
 		return DTO.mapClientes(cadenaHotelera.buscarClientes(patronNombreCliente));
 	}
 
@@ -164,9 +161,10 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	public ReservaDTO modificarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
 			GregorianCalendar fechaFin, boolean modificablePorHuesped) throws Exception {
 		
-		if (this.reserva == null)
+		if (this.reserva == null
+			|| !this.reserva.getModificablePorHuesped())
 		{
-			throw new Exception("No hay una reserva seleccionado");
+			throw new Exception("No hay una reserva seleccionado o la reserva no es modificable");
 		}
 		
 		this.reserva.getHotel().eliminarReserva(this.reserva);
@@ -207,7 +205,7 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 		if (this.reserva.getCliente().getRut()
 				!= this.cliente.getRut())
 			{
-				throw new Exception("cliente incorecto");
+				throw new Exception("cliente incorrecto");
 			}
 		
 		return DTO.map(this.reserva);

@@ -1,6 +1,7 @@
 package org.tds.sgh.business;
 
 import java.util.Map;
+import java.util.Random;
 
 public class TipoHabitacion
 {
@@ -15,6 +16,9 @@ public class TipoHabitacion
 	public TipoHabitacion(String nombre)
 	{
 		this.nombre = nombre;
+		Random rand = new Random();
+		
+		this.codigo = String.valueOf(rand.nextInt(100000));
 	}
 	
 	// --------------------------------------------------------------------------------------------

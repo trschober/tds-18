@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -208,15 +209,17 @@ public class Hotel
 	
 	public void eliminarReserva(Reserva reserva) {
 		
+		boolean eliminar = false;
 		for (Reserva r : this.reservas.values())
 		{
-			
 			if (r.getCodigo() == reserva.getCodigo())
 			{
-				reservas.remove(Long.toString(reserva.getCodigo()));
+				eliminar = true;
 			}
 		}
-		
+		if (eliminar) {
+			reservas.remove(Long.toString(reserva.getCodigo()));
+		}
 	}
 
 	public Habitacion buscarHabitacionLibre(String tipoHabitacion, 
