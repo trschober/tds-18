@@ -31,6 +31,7 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	private Hotel hotel;
 	private Cliente cliente;
 	private Reserva reserva;
+	private boolean modificando;
 	private ISistemaMensajeria sistemaMensajeria;
 	private ISistemaFacturacion sistemaFacturacion;
 	private ICalendario calendario;
@@ -43,7 +44,7 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 		sistemaMensajeria = Infrastructure.getInstance().getSistemaMensajeria();
 		sistemaFacturacion = Infrastructure.getInstance().getSistemaFacturacion();
 		calendario = Infrastructure.getInstance().getCalendario();
-
+		this.modificando = false;
 	}
 	
 	@Override
@@ -86,6 +87,16 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 			|| this.calendario.esPosterior(fechaInicio, fechaFin))
 		{
 			throw new Exception("Fechas incorrectas");
+		}
+		
+		if (this.reserva != null
+			&& this.modificando	
+				) {
+			if (this.hotel.seleccionarPorCodigoReserva(Long.toString(this.reserva.getCodigo())).getCodigo()
+				 == this.reserva.getCodigo()	
+					){
+					return true;
+			}
 		}
 		
 		return cadenaHotelera.confirmarDisponibilidad(nombreHotel, nombreTipoHabitacion, fechaInicio, fechaFin);
@@ -331,5 +342,8 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	public void clear() {
 		this.reserva = null;
 		this.cliente = null;
+	}
+	public void setModificando(boolean mod) {
+		this.modificando = mod;
 	}
 }

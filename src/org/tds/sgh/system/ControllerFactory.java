@@ -27,18 +27,21 @@ public class ControllerFactory implements IControllerFactory
 	@Override
 	public ICadenaController createCadenaController()
 	{
+		this.reservaController.setModificando(false);
 		return reservaController;
 	}
 	
 	@Override
 	public ICancelarReservaController createCancelarReservaController()
 	{
+		this.reservaController.setModificando(false);
 		return reservaController;
 	}
 	
 	@Override
 	public IHacerReservaController createHacerReservaController()
 	{
+		this.reservaController.setModificando(false);
 		return reservaController;
 	}
 	
@@ -46,13 +49,14 @@ public class ControllerFactory implements IControllerFactory
 	public IModificarReservaController createModificarReservaController()
 	{
 		this.reservaController.clear();
-		
+		this.reservaController.setModificando(true);
 		return reservaController;
 	}
 	
 	@Override
 	public ITomarReservaController createTomarReservaController()
 	{
+		this.reservaController.setModificando(true);
 		return reservaController;
 
 	}
