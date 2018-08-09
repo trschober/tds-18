@@ -75,13 +75,19 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	}
 
 	@Override
-	public boolean confirmarDisponibilidad(String nombreHotel, String nombreTipoHabitacion,
-			GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
+	public boolean confirmarDisponibilidad(
+			String nombreHotel, 
+			String nombreTipoHabitacion,
+			GregorianCalendar fechaInicio, 
+			GregorianCalendar fechaFin
+			) throws Exception {
+		
 		if (this.calendario.esPasada(fechaInicio)
 			|| this.calendario.esPosterior(fechaInicio, fechaFin))
 		{
 			throw new Exception("Fechas incorrectas");
 		}
+		
 		return cadenaHotelera.confirmarDisponibilidad(nombreHotel, nombreTipoHabitacion, fechaInicio, fechaFin);
 	}
 
@@ -320,5 +326,10 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 	public Set<TipoHabitacionDTO> getTiposHabitacion()
 	{
 		return DTO.mapTiposHabitacion(cadenaHotelera.listarTiposHabitacion());
+	}
+	
+	public void clear() {
+		this.reserva = null;
+		this.cliente = null;
 	}
 }

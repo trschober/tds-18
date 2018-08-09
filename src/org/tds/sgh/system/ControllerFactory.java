@@ -11,6 +11,7 @@ public class ControllerFactory implements IControllerFactory
 	private CadenaHotelera cadenaHotelera;
 	
 	private ReservaController reservaController;
+
 	
 	// --------------------------------------------------------------------------------------------
 	
@@ -44,6 +45,8 @@ public class ControllerFactory implements IControllerFactory
 	@Override
 	public IModificarReservaController createModificarReservaController()
 	{
+		this.reservaController.clear();
+		
 		return reservaController;
 	}
 	
