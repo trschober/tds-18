@@ -56,6 +56,11 @@ public class ControllerFactory implements IControllerFactory
 	@Override
 	public ITomarReservaController createTomarReservaController()
 	{
+		/*
+		 * si se descomenta la validacion modificando en hotel y al
+		 * setear modificando true lo hace pasar test max, pero falla test mid.
+		 * hay problemas en el test
+		 */
 		this.reservaController.setModificando(true);
 		return reservaController;
 

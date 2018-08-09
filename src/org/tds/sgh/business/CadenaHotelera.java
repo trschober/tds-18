@@ -156,7 +156,7 @@ public class CadenaHotelera
 	}
 
 	public boolean confirmarDisponibilidad(String nombreHotel, String nombreTipoHabitacion,
-			GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
+			GregorianCalendar fechaInicio, GregorianCalendar fechaFin, boolean modificando) throws Exception {
 		Hotel h = this.buscarHotel(nombreHotel);
 		TipoHabitacion th = this.buscarTipoHabitacion(nombreTipoHabitacion);
 
@@ -165,7 +165,7 @@ public class CadenaHotelera
 				throw new Exception("habitacion inexistente");
 			}
 		String nth = th.getNombre();
-		boolean a = h.confirmarDisponibilidad(nth, fechaInicio, fechaFin);
+		boolean a = h.confirmarDisponibilidad(nth, fechaInicio, fechaFin, modificando);
 		return a;
 	}
 
@@ -187,7 +187,8 @@ public class CadenaHotelera
 			String pais, 
 			String nombreTipoHabitacion, 
 			GregorianCalendar fechaInicio,
-			GregorianCalendar fechaFin
+			GregorianCalendar fechaFin,
+			boolean modificando
 			) throws Exception {
 		if (this.tiposHabitacion.get(nombreTipoHabitacion) == null)
 			{
@@ -200,7 +201,8 @@ public class CadenaHotelera
 			if (hotel.confirmarDisponibilidad(
 					nombreTipoHabitacion,
 					fechaInicio, 
-					fechaFin) 
+					fechaFin,
+					modificando) 
 				&& hotel.getPais().equals(pais)) 
 			{
 				hotelesDTO.add(new HotelDTO(hotel.getNombre(), hotel.getPais()));

@@ -88,18 +88,8 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 		{
 			throw new Exception("Fechas incorrectas");
 		}
-		
-		if (this.reserva != null
-			&& this.modificando	
-				) {
-			if (this.hotel.seleccionarPorCodigoReserva(Long.toString(this.reserva.getCodigo())).getCodigo()
-				 == this.reserva.getCodigo()	
-					){
-					return true;
-			}
-		}
-		
-		return cadenaHotelera.confirmarDisponibilidad(nombreHotel, nombreTipoHabitacion, fechaInicio, fechaFin);
+	
+		return cadenaHotelera.confirmarDisponibilidad(nombreHotel, nombreTipoHabitacion, fechaInicio, fechaFin, this.modificando);
 	}
 
 	@Override
@@ -155,7 +145,7 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 			{
 				throw new Exception("Fechas incorrectas");
 			}
-		return cadenaHotelera.sugerirAlternativas(pais, nombreTipoHabitacion, fechaInicio, fechaFin);
+		return cadenaHotelera.sugerirAlternativas(pais, nombreTipoHabitacion, fechaInicio, fechaFin, this.modificando);
 	}
 
 	@Override
