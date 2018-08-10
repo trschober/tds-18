@@ -1,6 +1,5 @@
 package org.tds.sgh.business;
 
-import java.util.Map;
 import java.util.Random;
 
 public class TipoHabitacion
@@ -9,7 +8,6 @@ public class TipoHabitacion
 	
 	private String nombre;
 	private String codigo;
-	private Map<String, Habitacion> habitaciones;
 	
 	// --------------------------------------------------------------------------------------------
 	

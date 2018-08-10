@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.tds.sgh.dtos.HotelDTO;
-import org.tds.sgh.dtos.ReservaDTO;
 
 
 public class CadenaHotelera
@@ -155,8 +154,14 @@ public class CadenaHotelera
 		return new HashSet<TipoHabitacion>(this.tiposHabitacion.values());
 	}
 
-	public boolean confirmarDisponibilidad(String nombreHotel, String nombreTipoHabitacion,
-			GregorianCalendar fechaInicio, GregorianCalendar fechaFin, boolean modificando) throws Exception {
+	public boolean confirmarDisponibilidad(
+			String nombreHotel, 
+			String nombreTipoHabitacion,
+			GregorianCalendar fechaInicio,
+			GregorianCalendar fechaFin, 
+			boolean modificando
+			) throws Exception {
+		
 		Hotel h = this.buscarHotel(nombreHotel);
 		TipoHabitacion th = this.buscarTipoHabitacion(nombreTipoHabitacion);
 
@@ -212,11 +217,12 @@ public class CadenaHotelera
 		return hotelesDTO;
 	}
 
-	public Set<Reserva> BuscarReservaCliente(Cliente cliente) {
+	public Set<Reserva> BuscarReservaCliente(
+			Cliente cliente) {
+		
 		Set<Reserva> Obj = new HashSet<>();
 		
 		for (Hotel hotel : hoteles.values()) {		
-			
 			Obj.addAll(hotel.obtenerReservasCliente(cliente));
 		}
 		

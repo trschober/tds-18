@@ -2,11 +2,8 @@ package org.tds.sgh.business;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 
 public class Reserva {
@@ -148,32 +145,6 @@ public class Reserva {
 		return estado.compareTo(EstadoReserva.Tomada) == 0;
 	}
 	
-	public int CoincideTipoHabitacion(GregorianCalendar _fechaInicio,GregorianCalendar _fechaFin )
-	{		
-		//Set<Habitacion> HabitacionEncontradas = new HashSet<Habitacion>();
-		int Coincide=0;
-		//for (Habitacion habitacion : this.Habitaciones.values())
-		//{
-			//if (habitacion.coincideElNombre(patronNombreCliente))
-			//{
-				Coincide++;
-			//}
-		//}		
-		return Coincide;
-	}
-	public int CoincideReserva(GregorianCalendar _fechaInicio,GregorianCalendar _fechaFin )
-	{		
-		//Set<Habitacion> HabitacionEncontradas = new HashSet<Habitacion>();
-		int Coincide=0;
-		//for (Habitacion habitacion : this.Habitaciones.values())
-		//{
-			//if (habitacion.coincideElNombre(patronNombreCliente))
-			//{
-				Coincide++;
-			//}
-		//}		
-		return Coincide;
-	}
 	public String getTipoHabitacion() {
 		return tipoHabitacion.getNombre();
 	}

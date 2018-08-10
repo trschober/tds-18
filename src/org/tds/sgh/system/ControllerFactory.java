@@ -1,14 +1,11 @@
 package org.tds.sgh.system;
 
 import org.tds.sgh.business.CadenaHotelera;
-import org.tds.sgh.infrastructure.NotImplementedException;
 
 
 public class ControllerFactory implements IControllerFactory
 {
 	// --------------------------------------------------------------------------------------------
-	
-	private CadenaHotelera cadenaHotelera;
 	
 	private ReservaController reservaController;
 
@@ -17,7 +14,6 @@ public class ControllerFactory implements IControllerFactory
 	
 	public ControllerFactory(CadenaHotelera cadenaHotelera)
 	{
-		this.cadenaHotelera = cadenaHotelera;
 		reservaController = new ReservaController(cadenaHotelera);
 	}
 	
@@ -56,11 +52,7 @@ public class ControllerFactory implements IControllerFactory
 	@Override
 	public ITomarReservaController createTomarReservaController()
 	{
-		/*
-		 * si se descomenta la validacion modificando en hotel y al
-		 * setear modificando true lo hace pasar test max, pero falla test mid.
-		 * hay problemas en el test
-		 */
+
 		this.reservaController.setModificando(true);
 		return reservaController;
 

@@ -13,9 +13,6 @@ public class Huesped {
 	
 	public Huesped(String codigo)
 	{
-			
-		//TODO: con el c�digo obtenemos un nuevo huesped
-		
 		this.nombre = "";		
 		this.setCodigo(codigo);
 		this.documento = "";

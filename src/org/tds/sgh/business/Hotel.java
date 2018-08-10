@@ -1,20 +1,13 @@
 package org.tds.sgh.business;
 
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.tds.sgh.dtos.DTO;
-import org.tds.sgh.dtos.ReservaDTO;
-import org.tds.sgh.dtos.TipoHabitacionDTO;
 import org.tds.sgh.infrastructure.ICalendario;
 import org.tds.sgh.infrastructure.Infrastructure;
-import org.tds.sgh.infrastructure.NotImplementedException;
 
 
 public class Hotel
@@ -26,7 +19,6 @@ public class Hotel
 	private String nombre;	
 	private String pais;
 	private ICalendario calendario;
-	private final DTO DTO = org.tds.sgh.dtos.DTO.getInstance();
 	
 	// --------------------------------------------------------------------------------------------
 	public Hotel()
@@ -104,22 +96,11 @@ public class Hotel
 				
 		int capacidadPorTipHabitacion = this.calcularCapacidad(nth);
 		int reservasConConflicto = this.calcularMaxReservasConConflictos(nth, fi, ff);
-		
-/*
- * 		Descomentar este chequeo para pasar 2 test max pero fallar un test mid
- * 		(test no permite distinguir si estoy modificando porque usa
- * 		tomarReservaController para modificar)
- * 
- * 		if (capacidadPorTipHabitacion == reservasConConflicto
-				&& modificando) {
-			return true;
-		}
-*/		
+				
 		return capacidadPorTipHabitacion > reservasConConflicto;
 		
 	}	
 	
-	//TODO Mejorar algoritmo para calcular conflictos de fechas
 	private int calcularMaxReservasConConflictos(
 			String nth, 
 			GregorianCalendar fi, 
@@ -166,7 +147,6 @@ public class Hotel
 		
 		for (Habitacion habitacion : this.habitaciones.values())
 		{
-			//TODO revisar si se compara nombre en lugar de c�digo de habitaci�n
 			if (habitacion.getTipoHabitacion().equals(nth))
 			{
 				capacidad++;
