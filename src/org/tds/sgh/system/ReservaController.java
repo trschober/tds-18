@@ -89,30 +89,9 @@ public class ReservaController implements IHacerReservaController, ITomarReserva
 		{
 			throw new Exception("Fechas incorrectas");
 		}
-		
-		// mejorar este codigo est√° horrible!
-		// la idea es pasar el caso en que tengo una reserva que estoy modificando
-		// pero sin romper los otros tests
-		if (this.reserva != null){
-			try {
-				// en caso de haber cambiado de hotel, tengo seleccionada una reserva de otro hotel y arroja e
-				// la excepcion es importante para no romper los test min
-				Reserva r2 = this.hotel.seleccionarPorCodigoReserva(
-						Long.toString(this.reserva.getCodigo()));
-				if (r2 != null) {
-					if( this.reserva.getCodigo() == r2.getCodigo()
-							// los test solo preguntan en caso de una sola reserva pendiente
-							// mejorar esta condicion o sacarla si es necesario
-							&& this.hotel.buscarReservasPendientes().size() == 1
-							&& modificando
-						) {
-					return true;
-				}
-				}
-				
-			}catch (Exception e) {
-				
-			}
+		// Si solo hay una reserva y se est· modificando, significa que es la reserva actual
+		if (modificando && this.hotel.buscarReservasPendientes().size() == 1) {
+			return true;
 		}
 	
 		return cadenaHotelera.confirmarDisponibilidad(
