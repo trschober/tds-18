@@ -1,72 +1,100 @@
 package org.tds.sgh.business;
 
-public class Cliente
-{
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Cliente {
 	// --------------------------------------------------------------------------------------------
-	
+
 	private String direccion;
-	
+
 	private String mail;
-	
+
 	private String nombre;
-	
+
 	private String rut;
-	
+
 	private String telefono;
-	
+
 	// --------------------------------------------------------------------------------------------
-	
-	public Cliente()
-	{
-		this.direccion = "";		
-		this.mail = "";		
-		this.nombre = "";		
-		this.rut = "";		
+	private long id;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public long getId() {
+		return this.id;
+	}
+
+	protected void setId(long id) {
+		this.id = id;
+	}
+
+	public Cliente() {
+		this.direccion = "";
+		this.mail = "";
+		this.nombre = "";
+		this.rut = "";
 		this.telefono = "";
 	}
-	
-	public Cliente(String rut, String nombre, String direccion, String telefono, String mail)
-	{
+
+	public Cliente(String rut, String nombre, String direccion, String telefono, String mail) {
 		this.direccion = direccion;
-		
+
 		this.mail = mail;
-		
+
 		this.nombre = nombre;
-		
+
 		this.rut = rut;
-		
+
 		this.telefono = telefono;
 	}
-	
+
 	// --------------------------------------------------------------------------------------------
-	
-	public boolean coincideElNombre(String patronNombreCliente)
-	{
+
+	public boolean coincideElNombre(String patronNombreCliente) {
 		return this.nombre.matches(patronNombreCliente);
 	}
-	
-	public String getDireccion()
-	{
+
+	public String getDireccion() {
 		return this.direccion;
 	}
-	
-	public String getMail()
-	{
+
+	protected void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getMail() {
 		return this.mail;
 	}
-	
-	public String getNombre()
-	{
+
+	protected void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getNombre() {
 		return this.nombre;
 	}
-	
-	public String getRut()
-	{
+
+	protected void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getRut() {
 		return this.rut;
 	}
-	
-	public String getTelefono()
-	{
+
+	protected void setRut(String rut) {
+		this.rut = rut;
+	}
+
+	public String getTelefono() {
 		return this.telefono;
+	}
+
+	protected void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 }

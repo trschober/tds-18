@@ -6,210 +6,182 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import org.tds.sgh.dtos.HotelDTO;
 
+@Entity
+public class CadenaHotelera {
+	// --------------------------------------------------------------------------------------------
 
-public class CadenaHotelera
-{
-	// --------------------------------------------------------------------------------------------
-	
 	private Map<String, Cliente> clientes;
-	
+
 	private Map<String, Hotel> hoteles;
-	
+
 	private String nombre;
-	
+
 	private Map<String, TipoHabitacion> tiposHabitacion;
-	
+
 	// --------------------------------------------------------------------------------------------
-	
-	public CadenaHotelera(String nombre)
-	{
+	private long id;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public long getId() {
+		return this.id;
+	}
+
+	protected void setId(long id) {
+		this.id = id;
+	}
+
+	public CadenaHotelera(String nombre) {
 		this.clientes = new HashMap<String, Cliente>();
-		
+
 		this.hoteles = new HashMap<String, Hotel>();
-		
+
 		this.nombre = nombre;
-		
+
 		this.tiposHabitacion = new HashMap<String, TipoHabitacion>();
 	}
-	
+
 	// --------------------------------------------------------------------------------------------
-	
-	public Cliente agregarCliente(
-		String rut,
-		String nombre,
-		String direccion,
-		String telefono,
-		String mail) throws Exception
-	{
-		if (this.clientes.containsKey(rut))
-		{
+
+	public Cliente agregarCliente(String rut, String nombre, String direccion, String telefono, String mail)
+			throws Exception {
+		if (this.clientes.containsKey(rut)) {
 			throw new Exception("Ya existe un cliente con el RUT indicado.");
 		}
-		
+
 		Cliente cliente = new Cliente(rut, nombre, direccion, telefono, mail);
-		
+
 		this.clientes.put(cliente.getRut(), cliente);
-		
+
 		return cliente;
 	}
-	
-	public Hotel agregarHotel(String nombre, String pais) throws Exception
-	{
-		if (this.hoteles.containsKey(nombre))
-		{
+
+	public Hotel agregarHotel(String nombre, String pais) throws Exception {
+		if (this.hoteles.containsKey(nombre)) {
 			throw new Exception("Ya existe un hotel con el nombre indicado.");
 		}
-		
+
 		Hotel hotel = new Hotel(nombre, pais);
-		
+
 		this.hoteles.put(hotel.getNombre(), hotel);
-		
+
 		return hotel;
 	}
-	
-	public TipoHabitacion agregarTipoHabitacion(String nombre) throws Exception
-	{
-		if (this.tiposHabitacion.containsKey(nombre))
-		{
+
+	public TipoHabitacion agregarTipoHabitacion(String nombre) throws Exception {
+		if (this.tiposHabitacion.containsKey(nombre)) {
 			throw new Exception("Ya existe un tipo de habitación con el nombre indicado.");
 		}
-		
+
 		TipoHabitacion tipoHabitacion = new TipoHabitacion(nombre);
-		
+
 		this.tiposHabitacion.put(tipoHabitacion.getNombre(), tipoHabitacion);
-		
+
 		return tipoHabitacion;
 	}
-	
-	public Cliente buscarCliente(String rut) throws Exception
-	{
+
+	public Cliente buscarCliente(String rut) throws Exception {
 		Cliente cliente = this.clientes.get(rut);
-		
-		if (cliente == null)
-		{
+
+		if (cliente == null) {
 			throw new Exception("No existe un cliente con el nombre indicado.");
 		}
-		
+
 		return cliente;
 	}
-	
-	public Set<Cliente> buscarClientes(String patronNombreCliente)
-	{
+
+	public Set<Cliente> buscarClientes(String patronNombreCliente) {
 		Set<Cliente> clientesEncontrados = new HashSet<Cliente>();
-		
-		for (Cliente cliente : this.clientes.values())
-		{
-			if (cliente.coincideElNombre(patronNombreCliente))
-			{
+
+		for (Cliente cliente : this.clientes.values()) {
+			if (cliente.coincideElNombre(patronNombreCliente)) {
 				clientesEncontrados.add(cliente);
 			}
 		}
-		
+
 		return clientesEncontrados;
 	}
-	
-	public Hotel buscarHotel(String nombre) throws Exception
-	{
+
+	public Hotel buscarHotel(String nombre) throws Exception {
 		Hotel hotel = this.hoteles.get(nombre);
-		
-		if (hotel == null)
-		{
+
+		if (hotel == null) {
 			throw new Exception("No existe un hotel con el nombre indicado.");
 		}
-		
+
 		return hotel;
 	}
-	
-	public TipoHabitacion buscarTipoHabitacion(String nombre) throws Exception
-	{
+
+	public TipoHabitacion buscarTipoHabitacion(String nombre) throws Exception {
 		TipoHabitacion tipoHabitacion = this.tiposHabitacion.get(nombre);
-		
-		if (tipoHabitacion == null)
-		{
+
+		if (tipoHabitacion == null) {
 			throw new Exception("No existe un tipo de habitación con el nombre indicado.");
 		}
-		
+
 		return tipoHabitacion;
 	}
-	
-	public String getNombre()
-	{
+
+	public String getNombre() {
 		return this.nombre;
 	}
-	
-	public Set<Cliente> listarClientes()
-	{
+
+	protected void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Set<Cliente> listarClientes() {
 		return new HashSet<Cliente>(this.clientes.values());
 	}
-	
-	public Set<Hotel> listarHoteles()
-	{
+
+	public Set<Hotel> listarHoteles() {
 		return new HashSet<Hotel>(this.hoteles.values());
 	}
-	
-	public Set<TipoHabitacion> listarTiposHabitacion()
-	{
+
+	public Set<TipoHabitacion> listarTiposHabitacion() {
 		return new HashSet<TipoHabitacion>(this.tiposHabitacion.values());
 	}
 
-	public boolean confirmarDisponibilidad(
-			String nombreHotel, 
-			String nombreTipoHabitacion,
-			GregorianCalendar fechaInicio,
-			GregorianCalendar fechaFin, 
-			boolean modificando
-			) throws Exception {
-		
+	public boolean confirmarDisponibilidad(String nombreHotel, String nombreTipoHabitacion,
+			GregorianCalendar fechaInicio, GregorianCalendar fechaFin, boolean modificando) throws Exception {
+
 		Hotel h = this.buscarHotel(nombreHotel);
 		TipoHabitacion th = this.buscarTipoHabitacion(nombreTipoHabitacion);
 
-		if (th == null)
-			{
-				throw new Exception("habitacion inexistente");
-			}
+		if (th == null) {
+			throw new Exception("habitacion inexistente");
+		}
 		String nth = th.getNombre();
 		boolean a = h.confirmarDisponibilidad(nth, fechaInicio, fechaFin, modificando);
 		return a;
 	}
 
-	public Reserva registrarReserva(
-			String nombreHotel, 
-			String nombreTipoHabitacion, 
-			GregorianCalendar fechaInicio,
-			GregorianCalendar fechaFin, 
-			boolean modificablePorHuesped,
-			Cliente cliente
-			) throws Exception {
-		
+	public Reserva registrarReserva(String nombreHotel, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
+			GregorianCalendar fechaFin, boolean modificablePorHuesped, Cliente cliente) throws Exception {
+
 		Hotel h = this.buscarHotel(nombreHotel);
 		TipoHabitacion th = this.buscarTipoHabitacion(nombreTipoHabitacion);
 		return h.registrarReserva(th, fechaInicio, fechaFin, modificablePorHuesped, cliente, h);
 	}
 
-	public Set<HotelDTO> sugerirAlternativas(
-			String pais, 
-			String nombreTipoHabitacion, 
-			GregorianCalendar fechaInicio,
-			GregorianCalendar fechaFin,
-			boolean modificando
-			) throws Exception {
-		if (this.tiposHabitacion.get(nombreTipoHabitacion) == null)
-			{
-				throw new Exception("tipo habitacion inexistente");
-			}
-		
+	public Set<HotelDTO> sugerirAlternativas(String pais, String nombreTipoHabitacion, GregorianCalendar fechaInicio,
+			GregorianCalendar fechaFin, boolean modificando) throws Exception {
+		if (this.tiposHabitacion.get(nombreTipoHabitacion) == null) {
+			throw new Exception("tipo habitacion inexistente");
+		}
+
 		Set<HotelDTO> hotelesDTO = new HashSet<HotelDTO>();
 
 		for (Hotel hotel : hoteles.values()) {
-			if (hotel.confirmarDisponibilidad(
-					nombreTipoHabitacion,
-					fechaInicio, 
-					fechaFin,
-					modificando) 
-				&& hotel.getPais().equals(pais)) 
-			{
+			if (hotel.confirmarDisponibilidad(nombreTipoHabitacion, fechaInicio, fechaFin, modificando)
+					&& hotel.getPais().equals(pais)) {
 				hotelesDTO.add(new HotelDTO(hotel.getNombre(), hotel.getPais()));
 			}
 		}
@@ -217,20 +189,19 @@ public class CadenaHotelera
 		return hotelesDTO;
 	}
 
-	public Set<Reserva> BuscarReservaCliente(
-			Cliente cliente) {
-		
+	public Set<Reserva> BuscarReservaCliente(Cliente cliente) {
+
 		Set<Reserva> Obj = new HashSet<>();
-		
-		for (Hotel hotel : hoteles.values()) {		
+
+		for (Hotel hotel : hoteles.values()) {
 			Obj.addAll(hotel.obtenerReservasCliente(cliente));
 		}
-		
+
 		return Obj;
 	}
 
 	public Set<Reserva> buscarReservasPendientes(String nombreHotel) throws Exception {
-		
+
 		return this.buscarHotel(nombreHotel).buscarReservasPendientes();
 	}
 }
